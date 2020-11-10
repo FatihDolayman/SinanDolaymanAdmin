@@ -1,0 +1,103 @@
+﻿@model Entities.Sound
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-10">
+                <!-- ============================================================== -->
+                <!-- pageheader  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header" id="top">
+                            <h2 class="pageheader-title">SİLMEK İSTEDİĞİNİZE EMİN MİSİNİZ? </h2>                            
+                            <p class="pageheader-text">@Model.Title</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Article") " class="breadcrumb-link">Makaleler</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Makale Detay</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- overview  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-section" id="overview">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>@Model.Title</h2>
+                                    <p class="lead">@Html.Raw(Model.Summary)</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div>
+                                <input type="submit" value="Sil" class="btn btn-default" /> |
+                                @Html.ActionLink("Listeye Dön", "Index")
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.CreateDate)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CreateDate)
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-5">
+                                <dl class="dl-horizontal">
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ModifyDate)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ModifyDate)
+                                    </dd>
+
+                                </dl>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

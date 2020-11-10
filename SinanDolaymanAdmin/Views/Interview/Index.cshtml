@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Entities.Interview>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Röportajlar</h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Röportajlar</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- data table multiselects  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Röportajlar</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            @Html.ActionLink("Yeni Ekle", "Create")
+                        </p>
+                        <div class="table-responsive">
+
+                            <p>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Content)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreateDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ModifyDate)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Content)
+                                        </td>
+                                        <td>
+                                            @item.CreateDate
+                                            @*@Html.DisplayFor(modelItem => item.CreateDate)*@
+                                        </td>
+                                        <td>
+                                            @item.ModifyDate
+                                            @*@Html.DisplayFor(modelItem => item.ModifyDate)*@
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end data table multiselects  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

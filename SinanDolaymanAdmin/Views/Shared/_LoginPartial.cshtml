@@ -1,0 +1,32 @@
+﻿
+@using SinanDolaymanAdmin.Helper
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="nav-user-info">
+
+            <a href="@Url.Action("Index", "Manage", routeValues: null)"><h5 class="mb-0 text-white nav-user-name">@User.GetFullName() </h5></a>
+        </div>
+        <a class="dropdown-item" href="/Manage/Index"><i class="fas fa-user mr-2"></i>Hesap</a>
+        <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Ayarlar</a>
+        <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-power-off mr-2"></i>Çıkış Yap</a>
+
+
+    }
+}
+else
+{
+    <div class="nav-user-info">
+
+        <span class="status"></span><span class="ml-2">Aktif</span>
+    </div>
+    <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Hesap</a>
+    <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Ayarlar</a>
+    <a class="dropdown-item" href="@Url.Action("Login", "Account", routeValues: null)"><i class="fas fa-power-off mr-2"></i>Giriş Yap</a>
+    <a class="dropdown-item" href="@Url.Action("Register", "Account", routeValues: null)"><i class="far fa-user"></i> Kayıt Ol</a>
+
+
+}

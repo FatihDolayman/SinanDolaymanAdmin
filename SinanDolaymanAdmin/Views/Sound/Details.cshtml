@@ -1,0 +1,93 @@
+﻿@model Entities.Sound
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-10">
+                <!-- ============================================================== -->
+                <!-- pageheader  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header" id="top">
+                            <h2 class="pageheader-title">Ses Detayları </h2>
+                            <p class="pageheader-text">@Model.Title</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Sound")" class="breadcrumb-link">Sesler</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Ses Detay</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- overview  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-section" id="overview">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>@Model.Title</h2>
+                                    <p class="lead">@Html.Raw(Model.Content)</p>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dl class="dl-horizontal">
+
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.CreateDate)
+                                                    </dt>
+
+                                                    <dd>
+                                                        @Html.DisplayFor(model => model.CreateDate)
+                                                    </dd>
+
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.ModifyDate)
+                                                    </dt>
+
+                                                    <dd>
+                                                        @Html.DisplayFor(model => model.ModifyDate)
+                                                    </dd>
+
+                                                </dl>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <p>
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+                                        @Html.ActionLink("Listeye Dön", "Index")
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+    </div>
+</div>

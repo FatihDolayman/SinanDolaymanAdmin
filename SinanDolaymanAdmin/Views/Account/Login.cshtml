@@ -1,0 +1,93 @@
+﻿@using SinanDolaymanAdmin.Models
+@model LoginViewModel
+@{ ViewBag.Title = "Giriş Yap"; }
+@{ Layout = null;}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            
+            <div class="card-header text-center"><a href="../index.html"><h1 style="color:blue">DOLAYMAN</h1></a><span class="splash-description">Lütfen kullanıcı bilgilerinizi girin.</span></div>
+            <div class="card-body">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+               
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new
+                        {
+                            @class = "form-control form-control-lg",
+                            @placeholder = "Email",
+                            @autocomplete = "off",
+                            id = "username"
+                        })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", @id = "password", @placeholder = "Password", @type = "password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                            <span class="custom-control-label">Beni Hatırla</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Giriş</button>
+                }
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="/Account/Register" class="footer-link">Hesap Oluştur</a>
+                </div>
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="#" class="footer-link">Şifremi Unuttum</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

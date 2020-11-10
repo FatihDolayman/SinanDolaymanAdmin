@@ -1,0 +1,219 @@
+﻿@model IEnumerable<Entities.Comment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Yorumlar</h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Yorumlar</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- data table multiselects  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Yorumlar</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="table-responsive">
+
+                            <p>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Content)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Commenter)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LikeCount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DislikeCount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ModuleId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Date)
+                                    </th>
+                                   
+
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                            <tr>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Content)                                    
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Commenter)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.LikeCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.DislikeCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Module)
+                                </th>                               
+
+                                <td>
+                                    @item.Date
+                                </td>
+                                
+                                <td>                                    
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end data table multiselects  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model IEnumerable<Entities.Comment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsOk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commenter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LikeCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DislikeCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModuleId)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsOk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commenter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LikeCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DislikeCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModuleId)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<br />*@  
