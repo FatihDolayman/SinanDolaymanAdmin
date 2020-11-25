@@ -1,0 +1,5 @@
+ayarlar bölümü
+arama bölümü
+Anasayfa alt başlıklar
+kullanıcının yanındaki uygulamalar bölümü
+bildirimler bölümü

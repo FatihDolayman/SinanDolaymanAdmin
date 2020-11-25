@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Models
 {
@@ -81,7 +82,7 @@ namespace SinanDolaymanAdmin.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Şifreyi Doğrula")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -100,7 +101,7 @@ namespace SinanDolaymanAdmin.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Şifreyi Onayla")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -123,6 +124,7 @@ namespace SinanDolaymanAdmin.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public List<SelectListItem> Rolleri { get; set; }
 
     }
 

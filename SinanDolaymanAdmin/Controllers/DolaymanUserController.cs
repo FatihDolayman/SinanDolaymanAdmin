@@ -69,17 +69,41 @@ namespace SinanDolaymanAdmin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await UserManager.FindByIdAsync(id);
+
             if (user == null)
             {
                 return HttpNotFound();
             }
 
+            var butunRoller = await RoleManager.Roles.ToListAsync();
+            List<SelectListItem> butunRollerS = new List<SelectListItem>();
+            foreach (var item in butunRoller)
+            {
+                SelectListItem rol = new SelectListItem();
+                rol.Value = item.Name;
+                rol.Text = item.Name;
+                butunRollerS.Add(rol);
+            }
+
+            ViewBag.ButunRoller = butunRollerS;
+
             var userRoles = await UserManager.GetRolesAsync(user.Id);
+
+          List<SelectListItem> roller = new List<SelectListItem>();
+            foreach (var item in userRoles)
+            {
+                 SelectListItem rol = new SelectListItem();
+                rol.Value = item;
+                rol.Text = item;
+                roller.Add(rol);
+            }
 
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
-                Email = user.Email              
+                Email = user.Email,
+
+                Rolleri= roller
             });
         }
 
@@ -87,7 +111,7 @@ namespace SinanDolaymanAdmin.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Email")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -96,9 +120,7 @@ namespace SinanDolaymanAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-
-                user.UserName = editUser.Email;
-                user.Email = editUser.Email;
+                               
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -118,10 +140,45 @@ namespace SinanDolaymanAdmin.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return Redirect("~/usersadmin/index");
+                return Redirect("~/DolaymanUser/index");
             }
-            ModelState.AddModelError("", "Something failed.");
-            return View();
+            else
+            {
+                ModelState.AddModelError("", "Bir hata oluştu");
+                var user = await UserManager.FindByIdAsync(editUser.Id);
+
+                var butunRoller = await RoleManager.Roles.ToListAsync();
+                List<SelectListItem> butunRollerS = new List<SelectListItem>();
+                foreach (var item in butunRoller)
+                {
+                    SelectListItem rol = new SelectListItem();
+                    rol.Value = item.Id;
+                    rol.Text = item.Name;
+                    butunRollerS.Add(rol);
+                }
+
+                ViewBag.ButunRoller = butunRollerS;
+
+                var userRoles = await UserManager.GetRolesAsync(user.Id);
+
+                List<SelectListItem> roller = new List<SelectListItem>();
+                foreach (var item in userRoles)
+                {
+                    SelectListItem rol = new SelectListItem();
+                    rol.Value = item;
+                    rol.Text = item;
+                    roller.Add(rol);
+                }
+
+                return View(new EditUserViewModel()
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+
+                    Rolleri = roller
+                });
+            }
+           
         }
 
         //

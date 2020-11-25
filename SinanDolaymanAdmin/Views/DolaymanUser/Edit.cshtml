@@ -1,4 +1,4 @@
-﻿@model Entities.DolaymanUser
+﻿@model SinanDolaymanAdmin.Models.EditUserViewModel
 
 <div class="dashboard-wrapper">
     <div class="container-fluid  dashboard-content">
@@ -27,40 +27,42 @@
 
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="section-block" id="basicform">
-                    <h3 class="section-title">Kullanıcılar</h3>
-                </div>
+
                 <div class="card">
-                    <h5 class="card-header">Kullanıcı Düzenle</h5>
                     <div class="card-body">
                         @using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.Email)
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label" })
-                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-form-label" })
-                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Path, htmlAttributes: new { @class = "col-form-label" })
-                                @Html.EditorFor(model => model.Path, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Path, "", new { @class = "text-danger" })
-                            </div>
+                            <dl>
+                                Roller:
+                                @{
+                                    foreach (var item in ViewBag.ButunRoller)
+                                    {
+                                        if (Model.Rolleri.Any(a => a.Value == item.Text))
+                                        {
+                                            <br />
+                                            <input type="checkbox" name="selectedRole" id="@item.Value" checked value="@item.Value" />
+                                            <label for="@item.Value">@item.Text</label>
+                                        }
+                                        else
+                                        {
+                                            <br />
+                                            <input type="checkbox" name="selectedRole" id="@item.Value" value="@item.Value" />
+                                            <label for="@item.Value">@item.Text</label>
+                                        }
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Content)
-                                @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-                            </div>
+                                    }
+                                }
+
+                            </dl>
                             <input type="submit" value="Düzenle" class="btn btn-facebook" />
                         }
                         <div>
