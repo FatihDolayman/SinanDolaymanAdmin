@@ -78,6 +78,14 @@
     <Compile Include="Migrations\202010151947003_commentfixed.designer.cs">
       <DependentUpon>202010151947003_commentfixed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011291927032_kapakResimleri.cs" />
+    <Compile Include="Migrations\202011291927032_kapakResimleri.designer.cs">
+      <DependentUpon>202011291927032_kapakResimleri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011292020024_ozet.cs" />
+    <Compile Include="Migrations\202011292020024_ozet.designer.cs">
+      <DependentUpon>202011292020024_ozet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -106,6 +114,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010151947003_commentfixed.resx">
       <DependentUpon>202010151947003_commentfixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011291927032_kapakResimleri.resx">
+      <DependentUpon>202011291927032_kapakResimleri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011292020024_ozet.resx">
+      <DependentUpon>202011292020024_ozet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

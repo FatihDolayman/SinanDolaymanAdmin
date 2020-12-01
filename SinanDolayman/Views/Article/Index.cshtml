@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Entities.Article>
+<br />
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+ 
+
+@foreach (var makale in Model)
+{
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="@makale.CoverImage" class="card-img" height="210" width="240" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" style="+">@makale.Title</h5>
+                    <p class="card-text">@makale.Summary</p>
+                    <p class="card-text"><small class="text-muted"><a href="@Url.Action("Detail","Article")">Devamı...</a></small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

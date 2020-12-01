@@ -17,9 +17,12 @@ namespace Entities
         public string Title { get; set; }
 
 
+        [Display(Name = "Özet")]
+        [AllowHtml]
+        public string Summary { get; set; }
+
         [Display(Name = "İçerik")]
         [AllowHtml]
-
         public string Content { get; set; }
 
 

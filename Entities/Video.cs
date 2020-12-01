@@ -16,6 +16,8 @@ namespace Entities
         [Display(Name = "Başlık")]
         public string Title { get; set; }
 
+        [Display(Name = "Kapak Resmi")]
+        public string CoverImage { get; set; }
 
         [Display(Name = "Video Yolu")]
         public string VideoPath { get; set; }

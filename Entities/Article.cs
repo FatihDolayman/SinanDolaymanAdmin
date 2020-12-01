@@ -18,6 +18,13 @@ namespace Entities
         [Display(Name ="Yazar")]
         public string Author { get; set; }
 
+        [Display(Name = "Kapak Resmi")]
+        public string CoverImage { get; set; }
+
+        [Display(Name = "Özet")]
+        [AllowHtml]
+        public string Summary { get; set; }
+
         [Display(Name = "İçerik")]
         [AllowHtml]
         public string Content { get; set; }

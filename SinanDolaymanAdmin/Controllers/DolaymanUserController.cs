@@ -61,6 +61,15 @@ namespace SinanDolaymanAdmin.Controllers
             return View(await UserManager.Users.ToListAsync());
         }
 
+        public ActionResult Details(string id)
+        {
+            var user = UserManager.Users.Where(a => a.Id == id).FirstOrDefault();
+            var userRoles = RoleManager.Roles.Where(a=>a.Users.Any(x=>x.UserId==id));
+            ViewBag.UserRoles = userRoles.ToList();
+            ViewBag.RolSayisi = userRoles.ToList().Count();
+            return View(user);
+        }
+
         [HttpGet]
         public async Task<ActionResult> Edit(string id)
         {

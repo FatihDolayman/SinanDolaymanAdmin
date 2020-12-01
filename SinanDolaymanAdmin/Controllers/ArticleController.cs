@@ -46,7 +46,7 @@ namespace SinanDolaymanAdmin.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]        
-        public ActionResult Create([Bind(Include = "Id,Title,Content")] Article article)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary")] Article article)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace SinanDolaymanAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,CreateDate,ModifyDate")] Article article)
+        public ActionResult Edit([Bind(Include = "Id,Title,Content,CreateDate,ModifyDate,CoverImage,Summary")] Article article)
         {
             if (ModelState.IsValid)
             {

@@ -16,6 +16,8 @@ namespace Entities
         [Display(Name = "Başlık")]
         public string Title { get; set; }
 
+        [Display(Name = "Kapak Resmi")]
+        public string CoverImage { get; set; }
 
         [Display(Name = "Özet")]
         [AllowHtml]
@@ -25,7 +27,6 @@ namespace Entities
         public string Path { get; set; }
 
         [DataType(DataType.Date)]
-
 
         [Display(Name = "Oluşturma Tarihi")]
         public DateTime CreateDate { get; set; }
