@@ -23,11 +23,7 @@ namespace Entities
         [Display(Name = "İçerik")]
         public string Content { get; set; }
 
-        [Display(Name = "Özet")]
-        [AllowHtml]
-        public string Summary { get; set; }
-
-
+        
         [Display(Name = "Onaylı mı?")]
         public bool IsOk { get; set; }
 

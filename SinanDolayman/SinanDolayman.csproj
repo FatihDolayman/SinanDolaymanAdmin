@@ -134,6 +134,9 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterviewController.cs" />
+    <Compile Include="Controllers\SoundController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -149,6 +152,7 @@
     <Content Include="Content\resim1.jpeg" />
     <Content Include="Content\resim2.jpg" />
     <Content Include="Content\resim3.jpeg" />
+    <Content Include="Content\Sinan Dolayman Logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -283,11 +287,18 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Interview\Details.cshtml" />
+    <Content Include="Views\Interview\Index.cshtml" />
+    <Content Include="Views\Video\Details.cshtml" />
+    <Content Include="Views\Video\Index.cshtml" />
+    <Content Include="Views\Sound\Details.cshtml" />
+    <Content Include="Views\Sound\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Book\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

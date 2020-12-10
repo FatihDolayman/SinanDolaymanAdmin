@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entities.Article>
+﻿@model IEnumerable<Entities.Sound>
 <br />
 @{
     ViewBag.Title = "Index";
@@ -16,7 +16,7 @@
 
             <div class="carousel-caption d-none d-md-block">
                 <h5>@item.Title</h5>
-                <p>@Html.Raw(item.Content)</p>
+                <p>@Html.Raw(item.Summary)</p>
             </div>
         </div>
     }
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <h5 class="card-title" style="+">@makale.Title</h5>
                     <p class="card-text">@makale.Summary</p>
-                    <p class="card-text"><small class="text-muted"><a href="@Url.Action("Details","Article")">Devamı...</a></small></p>
+                    <p class="card-text"><small class="text-muted"><a href="@Url.Action("Detail","Article")">Devamı...</a></small></p>
                 </div>
             </div>
         </div>

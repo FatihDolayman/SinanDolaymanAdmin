@@ -86,6 +86,10 @@
     <Compile Include="Migrations\202011292020024_ozet.designer.cs">
       <DependentUpon>202011292020024_ozet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012041655586_entitiler.cs" />
+    <Compile Include="Migrations\202012041655586_entitiler.designer.cs">
+      <DependentUpon>202012041655586_entitiler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011292020024_ozet.resx">
       <DependentUpon>202011292020024_ozet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012041655586_entitiler.resx">
+      <DependentUpon>202012041655586_entitiler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

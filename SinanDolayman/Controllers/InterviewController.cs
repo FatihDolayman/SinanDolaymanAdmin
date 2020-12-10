@@ -11,33 +11,32 @@ using Entities;
 
 namespace SinanDolayman.Controllers
 {
-    public class ArticleController : Controller
+    public class InterviewController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();
 
-        // GET: Article
+        // GET: Interview
         public ActionResult Index()
         {
-            return View(db.Articles.ToList());
+            return View(db.Interviews.ToList());
         }
 
-        // GET: Article/Details/5
+        // GET: Interview/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            Interview interview = db.Interviews.Find(id);
+            if (interview == null)
             {
                 return HttpNotFound();
             }
-            return View(article);
+            return View(interview);
         }
 
-          
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

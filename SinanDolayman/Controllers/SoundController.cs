@@ -11,33 +11,33 @@ using Entities;
 
 namespace SinanDolayman.Controllers
 {
-    public class ArticleController : Controller
+    public class SoundController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();
 
-        // GET: Article
+        // GET: Sound
         public ActionResult Index()
         {
-            return View(db.Articles.ToList());
+            var sounds = db.Sounds.Include(s => s.Category);
+            return View(sounds.ToList());
         }
 
-        // GET: Article/Details/5
+        // GET: Sound/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            Sound sound = db.Sounds.Find(id);
+            if (sound == null)
             {
                 return HttpNotFound();
             }
-            return View(article);
+            return View(sound);
         }
 
-          
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

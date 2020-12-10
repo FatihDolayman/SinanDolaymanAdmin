@@ -1,0 +1,30 @@
+﻿@model Entities.Video
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h1>
+        @Html.DisplayNameFor(model => model.Name)
+    </h1>
+
+    <h5>
+        @Html.DisplayNameFor(model => model.Content)
+    </h5>
+
+    <th class="col md-6">
+        @Html.DisplayFor(model => model.CreateDate)
+    </th>
+</div>
+
+
+<br />
+
+<p>
+    @Html.ActionLink("Listeye Dön", "Index", new { id = Model.Id })
+</p>
+
+
