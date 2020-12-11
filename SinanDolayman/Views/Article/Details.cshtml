@@ -1,18 +1,18 @@
 ﻿@model Entities.Article
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Title;
 }
 
 
 
         <div>
             <h1>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayFor(model => model.Title)
             </h1>
 
             <h5>
-                @Html.DisplayNameFor(model => model.Content)
+                @Html.Raw(Model.Content)
             </h5>
 
             <th class="col md-6">
