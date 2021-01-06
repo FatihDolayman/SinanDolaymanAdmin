@@ -23,8 +23,7 @@ namespace Entities
         public string VideoPath { get; set; }
 
 
-        [Display(Name = "Özet")]
-        [AllowHtml]
+        [Display(Name = "Özet")]       
         public string Summary { get; set; }
 
 

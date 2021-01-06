@@ -16,9 +16,16 @@ namespace SinanDolayman.Controllers
         private DolaymanDbContext db = new DolaymanDbContext();
 
         // GET: Interview
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(db.Interviews.ToList());
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                return View(db.Interviews.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList());
+            }
+            else
+            {
+                return View(db.Interviews.OrderByDescending(a => a.CreateDate).ToList());
+            }
         }
 
         // GET: Interview/Details/5

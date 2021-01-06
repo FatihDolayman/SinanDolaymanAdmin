@@ -1,114 +1,130 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="~/Content/styleForShareButtons.css" rel="stylesheet" />
+    <link href="~/Content/forSmallScreens.css" rel="stylesheet" />
 
-
-
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+   
 </head>
 
 <body>
     <div>
 
         <nav style="height:120px;" class="navbar navbar-light bg-light">
-            <div style="text-align:center">
-                <div>
-                    <img width="650" src="~/Content/Sinan Dolayman Logo.jpg" />
-                </div>                 
-                
+            <div style="text-align:center;margin:auto">
+
+                <a id="siteLogosu" href="@Url.Action("Index","Home")"><img width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" /></a>
+
+                @*<img id="siteLogosu" width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" />*@
             </div>
         </nav>
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li><a class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a></li>
+
+                        <a class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a>
+                        <a class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a>
+                        <a class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a>
+                        <a class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a>
+
+                        <a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a>
+                    </ul>
+
+                  @Html.Action("SearchPartial","Home")
+                </div>
+            </div>
+        </nav>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="@Url.Action("Index","Home")">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Article")">Makaleler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Book")">Kitaplar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Video")">Videolar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Sound")">Sesler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Interview")">Röportajlar</a>
+                </li>
 
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <a class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a>                  
-                    <a class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a>                  
-                    <a class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a>
-                    <a class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a>
-                    <a class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a>
-                    <a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a>
-                </ul>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
-                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Ara</button>
-                </form>
-            </div>
+            </ul>
         </div>
-    </nav>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link active" href="@Url.Action("Index","Home")">Anasayfa</a>
-            </li>
-            <li class="nav-item">
-                <a style="color:white" class="nav-link" href="@Url.Action("Index","Article")">Makaleler</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Book")">Kitaplar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Video")">Videolar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Sound")">Sesler</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Interview")">Röportajlar</a>
-            </li>
-
-        </ul>
-    </div>
 
     </div>
 
 
 
 
-
-
-    <div class="container body-content">
+    <div style="min-height:700px" class="container body-content">
         @RenderBody()
         <hr />
 
-        <footer style="background-color:cyan">
+
+    </div>
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <footer style=" background-color: #007aff">
+        <div class="container">
             <div class="row well">
-                <div class="col-md-9">
+                <div style="color:white;margin-bottom:20px" class="col-md-9">
                     <br />
-                    <br />
-                    <br />
-                    <h5>Fatih Dolayman</h5>
-                    <br />
-                    <br />
-                    <br />
+                    <h5>Sayfalar</h5>
+                    <a style="color:white" href="@Url.Action("Index","Home")">Anasayfa</a> <br />
+                    <a style="color:white" href="@Url.Action("Index","Article")">Makaleler</a> <br />
+                    <a style="color:white" href="@Url.Action("Index","Book")">Kitaplar</a><br />
+                    <a style="color:white" href="@Url.Action("Index","Video")">Videolar</a> <br />
+                    <a style="color:white" href="@Url.Action("Index","Sound")">Sesler</a> <br />
+                    <a style="color:white" href="@Url.Action("Index","Interview")">Röportajlar</a>
                 </div>
-                <div class="col-md-3">
-                    <h5>İletişim</h5>
-                    <h5>facobook <i class="fab fa-trash"></i></h5>
+
+               
+
+
+                <div id="sosyalMedyalar" style=" margin-top: 20px; background-color: #007aff; float: right; border: none" class="card">
+                    <div style="border:none;background-color:transparent;" class="card-header">
+                        <h5 style="color:white">Sosyal Medya</h5>
+                    </div>
+                    <div style="margin-top:-20px" class="card-body pull-right">
+                        <a href="https://www.facebook.com/sinan.dolayman"><img width="40" src="~/Content/Images/Facebook.png" /></a>
+                        <a href="https://twitter.com/sinandolayman"><img width="60" src="~/Content/Images/Twitter.png" /></a>
+                        <a href="https://www.instagram.com/sinandolayman/?hl=tr"><img width="40" src="~/Content/Images/İnstagram.png" /></a>
+                        <a href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><img width="62" src="~/Content/Images/Youtube.png" /></a>
+                    </div>
                 </div>
 
             </div>
-        </footer>
-    </div> 
-    @RenderSection("scripts", required: false)
-<script src="~/Scripts/bootstrap.js"></script>
+        </div>
+    </footer>
 </body>
 </html>
-
-
 
 

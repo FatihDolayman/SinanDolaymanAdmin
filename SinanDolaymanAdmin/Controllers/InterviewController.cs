@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DAL;
+using Entities;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DAL;
-using Entities;
 
 namespace SinanDolaymanAdmin.Controllers
 {

@@ -90,6 +90,10 @@
     <Compile Include="Migrations\202012041655586_entitiler.designer.cs">
       <DependentUpon>202012041655586_entitiler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101051915479_coverImage.cs" />
+    <Compile Include="Migrations\202101051915479_coverImage.designer.cs">
+      <DependentUpon>202101051915479_coverImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012041655586_entitiler.resx">
       <DependentUpon>202012041655586_entitiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101051915479_coverImage.resx">
+      <DependentUpon>202101051915479_coverImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

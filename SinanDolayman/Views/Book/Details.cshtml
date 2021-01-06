@@ -1,30 +1,63 @@
 ﻿@model Entities.Book
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name;
 }
 
 
-
-<div>
+<div class="share-btn-container">
+    <a target="_blank" onclick="setFrefFace('@Model.Name')" href="" id="shareFB">
+        <i class="fab fa-facebook"></i>
+    </a>
+    <a target="_blank" onclick="setFrefTwitter('@Model.Name')" id="shareTw" href="#">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a target="_blank" onclick="setFrefLinkedin('@Model.Name')" id="shareLn" href="#">
+        <i class="fab fa-linkedin"></i>
+    </a>
+    <a target="_blank" onclick="setFrefPinterest('@Model.Name')" id="sharePn" href="#">
+        <i class="fab fa-pinterest"></i>
+    </a>
+    <a target="_blank" onclick="setFrefWhatsapp('@Model.Name')" id="shareWs" href="#">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+<div class="content">
     <h1>
-        @Html.DisplayNameFor(model => model.Name)
+        @Html.DisplayFor(model => model.Name)
     </h1>
 
-    <h5>
-        @Html.DisplayNameFor(model => model.Content)
-    </h5>
-
-    <th class="col md-6">
+    <p>
+        @Html.Raw(Model.Content)
+        <br />
         @Html.DisplayFor(model => model.CreateDate)
-    </th>
+    </p>
+    <img class="pinterest-img"
+         src="~/Content/resim1.jpeg"
+         alt="" />
 </div>
 
 
-<br />
 
-<p>
-    @Html.ActionLink("Listeye Dön", "Index", new { id = Model.Id })
-</p>
-
-
+<script>
+    function setFrefFace(title) {
+        var t = title;
+        document.getElementById("shareFB").setAttribute("href", "https://www.facebook.com/sharer.php?u=" + encodeURIComponent(location.href));
+    }
+    function setFrefTwitter(title) {
+        var t = title;
+        document.getElementById("shareTw").setAttribute("href", "https://twitter.com/share?url=" + encodeURIComponent(location.href) +"&text="+t);
+    }
+    function setFrefLinkedin(title) {
+        var t = title;
+        document.getElementById("shareLn").setAttribute("href", "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(location.href));
+    }
+    function setFrefPinterest(title) {
+        var t = title;
+        document.getElementById("sharePn").setAttribute("href", "https://pinterest.com/pin/create/bookmarklet/?media=[post-img]&url=" + encodeURIComponent(location.href));
+    }
+    function setFrefWhatsapp(title) {
+        var t = title;
+        document.getElementById("shareWs").setAttribute("href", "https://api.whatsapp.com/send?text=" + encodeURIComponent(location.href));
+    }
+</script>

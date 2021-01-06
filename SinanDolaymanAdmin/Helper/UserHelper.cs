@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Security.Principal;
-using System.Web;
 
 namespace SinanDolaymanAdmin.Helper
 {
@@ -17,7 +13,7 @@ namespace SinanDolaymanAdmin.Helper
             return "";
         }
 
-       
+
         public static string GetUserId(this IPrincipal user)
         {
             var IdClaim = ((ClaimsIdentity)user.Identity).FindFirst("Id");

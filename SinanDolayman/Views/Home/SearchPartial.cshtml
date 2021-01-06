@@ -1,0 +1,17 @@
+﻿
+@model SinanDolayman.Models.SearchModel
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline" }))
+{
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+
+            @Html.DropDownListFor(m => m.Kategoriler, ViewBag.Kategoriler as SelectList, new { @class = "form-control" })
+
+        </div>
+        <input name="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Ara" value="@ViewBag.SearchTerm" aria-label="Search">
+    </div>
+
+    <button class="btn btn-warning my-2 my-sm-0" type="submit">Ara</button>
+
+}

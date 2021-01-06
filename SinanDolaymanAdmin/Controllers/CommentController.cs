@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using DAL;
+using Entities;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DAL;
-using Entities;
 
 namespace SinanDolaymanAdmin.Controllers
 {
-    [Authorize(Roles ="admin")]
+    [Authorize(Roles = "admin")]
     public class CommentController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();
@@ -31,7 +26,7 @@ namespace SinanDolaymanAdmin.Controllers
             }
             Comment comment = db.Comments.Find(id);
 
-          
+
 
             if (comment == null)
             {
@@ -40,10 +35,10 @@ namespace SinanDolaymanAdmin.Controllers
             return View(comment);
         }
 
-        
-        
-        
-        
+
+
+
+
         public ActionResult Delete(int? id)
         {
             if (id == null)

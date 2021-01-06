@@ -19,8 +19,7 @@ namespace Entities
         [Display(Name = "Kapak Resmi")]
         public string CoverImage { get; set; }
 
-        [Display(Name = "Özet")]
-        [AllowHtml]
+        [Display(Name = "Özet")]       
         public string Summary { get; set; }
 
         [Display(Name = "Ses Yolu")]

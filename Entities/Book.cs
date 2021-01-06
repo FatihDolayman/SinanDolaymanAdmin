@@ -19,8 +19,7 @@ namespace Entities
         [Display(Name = "Yazar")]
         public string Author { get; set; }
 
-        [Display(Name = "Özet")]
-        [AllowHtml]
+        [Display(Name = "Özet")]       
         public string Summary { get; set; }
 
         [Display(Name = "Açıklama")]

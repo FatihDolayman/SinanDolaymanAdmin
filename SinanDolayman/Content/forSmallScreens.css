@@ -1,0 +1,32 @@
+﻿
+@media (max-width: 750px) {
+    #siteLogosu {
+        width: 100%;
+        height:90px;
+    }  
+}
+
+
+@media (max-width: 780px) {
+    #carouselExampleCaptions {
+       height:300px;
+    }
+}
+
+
+
+
+@media (max-width: 550px) {
+    #sosyalMedyalar {
+        background-color: transparent !important;
+        margin-left: 224px;
+        margin-top: -205px !important;
+        height: 100px;
+    }
+
+
+   footer{
+
+       margin-bottom:50px !important;
+   }
+}

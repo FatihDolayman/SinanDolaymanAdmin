@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DAL;
+using Entities;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DAL;
-using Entities;
 
 namespace SinanDolaymanAdmin.Controllers
 {
@@ -51,7 +47,7 @@ namespace SinanDolaymanAdmin.Controllers
         public ActionResult Create([Bind(Include = "Id,Name")] VideoCategory videoCategory)
         {
             if (ModelState.IsValid)
-            {               
+            {
                 db.VideoCategories.Add(videoCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");

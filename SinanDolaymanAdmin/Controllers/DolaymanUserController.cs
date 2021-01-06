@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using SinanDolaymanAdmin.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,10 +8,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using DAL;
-using Entities;
-using Microsoft.AspNet.Identity.Owin;
-using SinanDolaymanAdmin.Models;
 
 namespace SinanDolaymanAdmin.Controllers
 {
@@ -57,14 +54,14 @@ namespace SinanDolaymanAdmin.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            
+
             return View(await UserManager.Users.ToListAsync());
         }
 
         public ActionResult Details(string id)
         {
             var user = UserManager.Users.Where(a => a.Id == id).FirstOrDefault();
-            var userRoles = RoleManager.Roles.Where(a=>a.Users.Any(x=>x.UserId==id));
+            var userRoles = RoleManager.Roles.Where(a => a.Users.Any(x => x.UserId == id));
             ViewBag.UserRoles = userRoles.ToList();
             ViewBag.RolSayisi = userRoles.ToList().Count();
             return View(user);
@@ -98,10 +95,10 @@ namespace SinanDolaymanAdmin.Controllers
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
 
-          List<SelectListItem> roller = new List<SelectListItem>();
+            List<SelectListItem> roller = new List<SelectListItem>();
             foreach (var item in userRoles)
             {
-                 SelectListItem rol = new SelectListItem();
+                SelectListItem rol = new SelectListItem();
                 rol.Value = item;
                 rol.Text = item;
                 roller.Add(rol);
@@ -112,7 +109,7 @@ namespace SinanDolaymanAdmin.Controllers
                 Id = user.Id,
                 Email = user.Email,
 
-                Rolleri= roller
+                Rolleri = roller
             });
         }
 
@@ -129,7 +126,7 @@ namespace SinanDolaymanAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                               
+
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -187,7 +184,7 @@ namespace SinanDolaymanAdmin.Controllers
                     Rolleri = roller
                 });
             }
-           
+
         }
 
         //

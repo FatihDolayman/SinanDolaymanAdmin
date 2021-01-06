@@ -16,10 +16,16 @@ namespace SinanDolayman.Controllers
         private DolaymanDbContext db = new DolaymanDbContext();
 
         // GET: Video
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var videos = db.Videos.Include(v => v.Category);
-            return View(videos.ToList());
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                return View(db.Videos.Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList());
+            }
+            else
+            {
+                return View(db.Videos.OrderByDescending(a => a.CreateDate).ToList());
+            }
         }
 
         // GET: Video/Details/5

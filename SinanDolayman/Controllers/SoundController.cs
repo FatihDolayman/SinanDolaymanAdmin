@@ -16,10 +16,16 @@ namespace SinanDolayman.Controllers
         private DolaymanDbContext db = new DolaymanDbContext();
 
         // GET: Sound
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var sounds = db.Sounds.Include(s => s.Category);
-            return View(sounds.ToList());
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                return View(db.Sounds.Where(a => a.Title.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList());
+            }
+            else
+            {
+                return View(db.Sounds.OrderByDescending(a => a.CreateDate).ToList());
+            }
         }
 
         // GET: Sound/Details/5

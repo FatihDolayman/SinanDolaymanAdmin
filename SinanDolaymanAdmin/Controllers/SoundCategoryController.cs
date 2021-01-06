@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using DAL;
+using Entities;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DAL;
-using Entities;
 
 namespace SinanDolaymanAdmin.Controllers
 {
@@ -51,7 +46,7 @@ namespace SinanDolaymanAdmin.Controllers
         public ActionResult Create([Bind(Include = "Id,Name")] SoundCategory soundCategory)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 db.SoundCategories.Add(soundCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,7 +81,7 @@ namespace SinanDolaymanAdmin.Controllers
             {
                 SoundCategory dbSoundCategory = new SoundCategory();
                 dbSoundCategory = db.SoundCategories.Find(soundCategory.Id);
-                dbSoundCategory.Name = soundCategory.Name;                
+                dbSoundCategory.Name = soundCategory.Name;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

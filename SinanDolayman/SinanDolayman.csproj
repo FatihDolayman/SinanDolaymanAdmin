@@ -140,6 +140,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ReplaceChars.cs" />
+    <Compile Include="Models\AramaKategorisi.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,10 +152,18 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\forSmallScreens.css" />
+    <Content Include="Content\Images\Facebook.png" />
+    <Content Include="Content\Images\IMG_1934.JPG" />
+    <Content Include="Content\Images\IMG_1940.JPG" />
+    <Content Include="Content\Images\Sinan Dolayman Logo.jpg" />
+    <Content Include="Content\Images\Twitter.png" />
+    <Content Include="Content\Images\Youtube.png" />
+    <Content Include="Content\Images\İnstagram.png" />
     <Content Include="Content\resim1.jpeg" />
     <Content Include="Content\resim2.jpg" />
     <Content Include="Content\resim3.jpeg" />
-    <Content Include="Content\Sinan Dolayman Logo.jpg" />
+    <Content Include="Content\styleForShareButtons.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -295,10 +306,10 @@
     <Content Include="Views\Video\Index.cshtml" />
     <Content Include="Views\Sound\Details.cshtml" />
     <Content Include="Views\Sound\Index.cshtml" />
+    <Content Include="Views\Home\SearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
