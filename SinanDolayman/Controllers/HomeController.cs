@@ -30,9 +30,8 @@ namespace SinanDolayman.Controllers
 
             if (!String.IsNullOrEmpty(searchTerm))
             {
-                ViewBag.SearchTerm = searchTerm;
-              
-              
+                ViewBag.SearchTerm = searchTerm;              
+
                 switch (Kategoriler)
                 {
                     case 0:
@@ -56,11 +55,11 @@ namespace SinanDolayman.Controllers
                         break;
                     case 5:
                         aramaListeleri.Interviews = db.Interviews.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;                   
+                        break;                    
 
                 }
 
-               
+                ViewBag.SearchTerm = searchTerm;
                 return View(aramaListeleri);
             }
             else
@@ -77,7 +76,8 @@ namespace SinanDolayman.Controllers
         }
 
 
-        public ActionResult SearchPartial()
+        [ChildActionOnly]
+        public ActionResult SearchPartial(string searchTerm)
         {
             SearchModel aramaListeleri = new SearchModel();
             aramaListeleri.Kategoriler = new List<AramaKategorisi>();
@@ -90,7 +90,7 @@ namespace SinanDolayman.Controllers
 
             ViewBag.Kategoriler = new SelectList(aramaListeleri.Kategoriler, "Value", "Kategori");
 
-
+            ViewBag.Search = searchTerm;
             return PartialView(aramaListeleri);
         }
 

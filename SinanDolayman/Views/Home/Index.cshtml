@@ -75,7 +75,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@article.Title</h5>
                             <p class="card-text">@article.Summary</p>
-                            <p class="card-text"><small class="text-muted"><a href="@Url.Action("Details", "Article", new { id = article.Id })">Devamı...</a></small></p>
+                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Article",new {id=article.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@book.Name</h5>
                             <p class="card-text">@book.Summary</p>
-                            <p class="card-text"><small class="text-muted"><a href="@Url.Action("Details", "Book", new { id = book.Id })">Devamı...</a></small></p>
+                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@video.Title</h5>
                             <p class="card-text">@video.Summary</p>
-                            <p class="card-text"><small class="text-muted"><a href="@Url.Action("Details", "Video", new { id = video.Id })">Devamı...</a></small></p>
+                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Video",new {id=video.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@sound.Title</h5>
                             <p class="card-text">@sound.Summary</p>
-                            <p class="card-text"><small class="text-muted"><a href="@Url.Action("Details", "Sound", new { id = sound.Id })">Devamı...</a></small></p>
+                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Sound",new {id=sound.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@interview.Title</h5>
                             <p class="card-text">@interview.Summary</p>
-                            <p class="card-text"><small class="text-muted"><a href="@Url.Action("Details", "Interview", new { id = interview.Id })">Devamı...</a></small></p>
+                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","interview",new {id=interview.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>

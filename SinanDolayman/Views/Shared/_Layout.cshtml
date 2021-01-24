@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="~/Content/styleForShareButtons.css" rel="stylesheet" />
     <link href="~/Content/forSmallScreens.css" rel="stylesheet" />
-
+    <link href="~/Content/Genel.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.5.1.js"></script>
    
 </head>
@@ -21,14 +21,14 @@
         <nav style="height:120px;" class="navbar navbar-light bg-light">
             <div style="text-align:center;margin:auto">
 
-                <a id="siteLogosu" href="@Url.Action("Index","Home")"><img width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" /></a>
+                <a id="siteLogosu" href="@Url.Action("Index","Home",new {searchTerm=ViewBag.SearchTerm })"><img width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" /></a>
 
                 @*<img id="siteLogosu" width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" />*@
             </div>
         </nav>
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -92,7 +92,7 @@
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/bootstrap.js"></script>
 
-    <footer style=" background-color: #007aff">
+    <footer style=" background-color: #212529">
         <div class="container">
             <div class="row well">
                 <div style="color:white;margin-bottom:20px" class="col-md-9">
@@ -109,7 +109,7 @@
                
 
 
-                <div id="sosyalMedyalar" style=" margin-top: 20px; background-color: #007aff; float: right; border: none" class="card">
+                <div id="sosyalMedyalar" style=" margin-top: 20px; background-color: #212529; float: right; border: none" class="card">
                     <div style="border:none;background-color:transparent;" class="card-header">
                         <h5 style="color:white">Sosyal Medya</h5>
                     </div>

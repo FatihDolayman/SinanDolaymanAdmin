@@ -4,7 +4,16 @@
     ViewBag.Title = Model.Title;
 }
 
-
+<head>
+    <style type="text/css">
+        #detayresim {
+            float: right;
+            position: relative;
+            z-index: 10;
+            color: white;
+        }
+    </style>
+</head>
 
 
 <div class="share-btn-container">
@@ -34,10 +43,13 @@
         <br />
         @Html.DisplayFor(model => model.CreateDate)
     </p>
-    <img width="500" class="pinterest-img"
-         src="@Model.CoverImage"
-         alt="" />
+    <div style="max-width:700px" class="card">     
+        <img id="detayresim" style="max-width:700px" src="@Model.CoverImage" class="card-img-bottom" alt="...">
     </div>
+    @*<img width="500" class="pinterest-img"
+         src="@Model.CoverImage"
+         alt="" />*@
+</div>
 
 
 

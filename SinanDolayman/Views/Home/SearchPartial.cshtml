@@ -1,17 +1,45 @@
-﻿
+﻿<head>
+    <style type="text/css">
+        #aramaIconu {
+            float: right;
+            height: 31px;
+            
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+    </style>
+</head>
+
+
+
 @model SinanDolayman.Models.SearchModel
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline" }))
 {
+    //string arama= Request.Cookies["arama"] == null ? "" : Request.Cookies["arama"].Value; ;
 
-    <div class="input-group">
-        <div class="input-group-prepend">
+    @*<div class="input-group">
+        <div class="input-group-prepend">*@
 
-            @Html.DropDownListFor(m => m.Kategoriler, ViewBag.Kategoriler as SelectList, new { @class = "form-control" })
+    @*@Html.DropDownListFor(m => m.Kategoriler, ViewBag.Kategoriler as SelectList, new { @class = "form-control" })*@
 
-        </div>
-        <input name="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Ara" value="@ViewBag.SearchTerm" aria-label="Search">
-    </div>
+    @*</div>*@
+    <a class="kategoriBtn" style=" background-color:white;height:38px;border-right:none;border-top:2px;border-bottom-color:white; width:40px;margin-right:-10px" title="ara" id="aramaIconu"><i  style="color:black;margin-top:10px;margin-left:8px;cursor:pointer" class="fas fa-chevron-down"></i></a>
+    <input style="width:300px" id="genelArama" name="searchTerm" class="form-control" type="search" placeholder="Ara" value="@ViewBag.Search" aria-label="Search">
+    @*</div>*@
 
-    <button class="btn btn-warning my-2 my-sm-0" type="submit">Ara</button>
+    <button id="aramaBtn" hidden="hidden" class="btn btn-warning my-2 my-sm-0" type="submit">Ara</button>
 
 }
+
+<script>
+    var input = document.getElementById("genelArama");
+
+    input.addEventListener("keyup", function (event) {
+
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("aramaBtn").click();
+        }
+    });
+</script>

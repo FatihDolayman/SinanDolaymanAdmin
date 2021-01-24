@@ -22,22 +22,20 @@
 }
 
 
-@foreach (var makale in Model)
+@foreach (var interview in Model)
 {
     <div style="border:none" class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <a href="@Url.Action("Details","Interview",new {id=makale.Id })">
-                    <img src="@makale.CoverImage" class="card-img" height="210" width="240" alt="...">
+                <a href="@Url.Action("Details","Interview",new {id=interview.Id })">
+                    <img src="@interview.CoverImage" class="card-img" height="210" width="240" alt="...">
                 </a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <a href="@Url.Action("Details","Interview",new {id=makale.Id })"><h5 style="color:black" class="card-title">@makale.Title</h5></a>
-                    <p class="card-text">@makale.Summary</p>
-                    <a href="@Url.Action("Details","Interview",new {id=makale.Id })">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Devamı...</button>
-                    </a>
+                    <a href="@Url.Action("Details","Interview",new {id=interview.Id })"><h5 style="color:black" class="card-title">@interview.Title</h5></a>
+                    <p class="card-text">@interview.Summary</p>                    
+                    <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Article",new {id=interview.Id })"> Devamı...</a>
                 </div>
             </div>
         </div>

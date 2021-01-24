@@ -153,6 +153,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\forSmallScreens.css" />
+    <Content Include="Content\Genel.css" />
     <Content Include="Content\Images\Facebook.png" />
     <Content Include="Content\Images\IMG_1934.JPG" />
     <Content Include="Content\Images\IMG_1940.JPG" />
