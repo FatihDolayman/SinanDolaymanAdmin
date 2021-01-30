@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entiti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinanDolayman", "SinanDolayman\SinanDolayman.csproj", "{B85EE889-3E30-4DE7-BA81-14E7D212E2F8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SiteResimleri", "SiteResimleri", "{BB4C6294-6B71-4DF3-81A8-6B8BC5179ADC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

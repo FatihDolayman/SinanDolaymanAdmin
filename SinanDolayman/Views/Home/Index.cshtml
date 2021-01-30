@@ -4,7 +4,7 @@
 @model SinanDolayman.Models.SearchModel
 
 @{
-    if (ViewBag.SearchTerm == null)
+    if (String.IsNullOrEmpty(ViewBag.SearchTerm))
     {
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -66,7 +66,7 @@
     {
         foreach (var article in Model.Articles)
         {
-            <div style="border:none" class="card mb-3">
+            <div style="border:none; height:220px" class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="@article.CoverImage" class="card-img" height="210" width="240" alt="...">
@@ -75,7 +75,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@article.Title</h5>
                             <p class="card-text">@article.Summary</p>
-                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Article",new {id=article.Id })"> Devamı...</a>
+                            <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Article",new {id=article.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
     {
         foreach (var book in Model.Books)
         {
-            <div style="border:none" class="card mb-3">
+            <div style="border:none; height:220px" class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="@book.CoverImage" class="card-img" height="210" width="240" alt="...">
@@ -100,7 +100,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@book.Name</h5>
                             <p class="card-text">@book.Summary</p>
-                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.Id })"> Devamı...</a>
+                            <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
     {
         foreach (var video in Model.Videos)
         {
-            <div style="border:none" class="card mb-3">
+            <div style="border:none; height:220px" class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="@video.CoverImage" class="card-img" height="210" width="240" alt="...">
@@ -124,7 +124,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@video.Title</h5>
                             <p class="card-text">@video.Summary</p>
-                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Video",new {id=video.Id })"> Devamı...</a>
+                            <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Video",new {id=video.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
     {
         foreach (var sound in Model.Sounds)
         {
-            <div style="border:none" class="card mb-3">
+            <div style="border:none; height:220px" class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="@sound.CoverImage" class="card-img" height="210" width="240" alt="...">
@@ -149,7 +149,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@sound.Title</h5>
                             <p class="card-text">@sound.Summary</p>
-                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Sound",new {id=sound.Id })"> Devamı...</a>
+                            <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Sound",new {id=sound.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
     {
         foreach (var interview in Model.Interviews)
         {
-            <div style="border:none" class="card mb-3">
+            <div style="border:none; height:220px" class="card mb-3">
                 <div class="row no-gutters">
                     @*<div class="col-md-4">
                             <img src="@interview.CoverImage" class="card-img" height="210" width="240" alt="...">
@@ -173,7 +173,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="">@interview.Title</h5>
                             <p class="card-text">@interview.Summary</p>
-                            <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","interview",new {id=interview.Id })"> Devamı...</a>
+                            <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","interview",new {id=interview.Id })"> Devamı...</a>
                         </div>
                     </div>
                 </div>

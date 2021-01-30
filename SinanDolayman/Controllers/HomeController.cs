@@ -14,85 +14,23 @@ namespace SinanDolayman.Controllers
     {
         private DolaymanDbContext db = new DolaymanDbContext();
 
-        public ActionResult Index(string searchTerm, int? Kategoriler)
+        public ActionResult Index(string searchTerm)
         {
-            SearchModel aramaListeleri = new SearchModel();
-            aramaListeleri.Kategoriler = new List<AramaKategorisi>();
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Tüm Kategorilerde",Value=0 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Makalelerde", Value = 1});
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Kitaplarda", Value = 2 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Videolarda", Value = 3 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Seslerde", Value = 4 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Röportajlarda", Value = 5 });
-
-            ViewBag.Kategoriler = new SelectList(aramaListeleri.Kategoriler, "Value", "Kategori", Kategoriler);
-
-
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (searchTerm==null)
             {
-                ViewBag.SearchTerm = searchTerm;              
-
-                switch (Kategoriler)
-                {
-                    case 0:
-                        aramaListeleri.Articles = db.Articles.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        aramaListeleri.Books = db.Books.Where(a => a.Name.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        aramaListeleri.Sounds = db.Sounds.Where(a => a.Title.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        aramaListeleri.Interviews = db.Interviews.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        aramaListeleri.Videos = db.Videos.Where(a => a.Title.Contains(searchTerm) ||a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;
-                    case 1:
-                        aramaListeleri.Articles = db.Articles.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;
-                    case 2:
-                        aramaListeleri.Books = db.Books.Where(a => a.Name.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;
-                    case 3:
-                        aramaListeleri.Videos = db.Videos.Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;
-                    case 4:
-                        aramaListeleri.Sounds = db.Sounds.Where(a => a.Title.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;
-                    case 5:
-                        aramaListeleri.Interviews = db.Interviews.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-                        break;                    
-
-                }
-
-                ViewBag.SearchTerm = searchTerm;
-                return View(aramaListeleri);
+                searchTerm = "";
             }
-            else
-            {
-                aramaListeleri.Articles = db.Articles.OrderByDescending(a => a.CreateDate).Take(5).ToList();
-                aramaListeleri.Sounds = db.Sounds.OrderByDescending(a => a.CreateDate).Take(5).ToList();
-                aramaListeleri.Videos = db.Videos.OrderByDescending(a => a.CreateDate).Take(5).ToList();
-                aramaListeleri.Books = db.Books.OrderByDescending(a => a.CreateDate).Take(5).ToList();
-                aramaListeleri.Interviews = db.Interviews.OrderByDescending(a => a.CreateDate).Take(5).ToList();
-
-                return View(aramaListeleri);
-            }
+            SearchModel aramaListeleri = new SearchModel();            
+            aramaListeleri.Articles = db.Articles.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
+            aramaListeleri.Books = db.Books.AsNoTracking().Where(a => a.Name.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
+            aramaListeleri.Sounds = db.Sounds.AsNoTracking().Where(a => a.Title.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
+            aramaListeleri.Interviews = db.Interviews.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
+            aramaListeleri.Videos = db.Videos.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
+            ViewBag.SearchTerm = searchTerm;
+            return View(aramaListeleri);
 
         }
-
-
-        [ChildActionOnly]
-        public ActionResult SearchPartial(string searchTerm)
-        {
-            SearchModel aramaListeleri = new SearchModel();
-            aramaListeleri.Kategoriler = new List<AramaKategorisi>();
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Tüm Kategorilerde", Value = 0 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Makalelerde", Value = 1 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Kitaplarda", Value = 2 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Videolarda", Value = 3 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Seslerde", Value = 4 });
-            aramaListeleri.Kategoriler.Add(new AramaKategorisi { Kategori = "Röportajlarda", Value = 5 });
-
-            ViewBag.Kategoriler = new SelectList(aramaListeleri.Kategoriler, "Value", "Kategori");
-
-            ViewBag.Search = searchTerm;
-            return PartialView(aramaListeleri);
-        }
+              
 
         public ActionResult About()
         {

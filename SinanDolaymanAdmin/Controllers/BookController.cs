@@ -2,8 +2,10 @@
 using Entities;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
@@ -42,15 +44,34 @@ namespace SinanDolaymanAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Content,Path")] Book book)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Content,Path")] Book book, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                book.CreateDate = DateTime.Now;
-                book.ModifyDate = DateTime.Now;
-                db.Books.Add(book);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(book);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SiteResimleri", fileName));
+
+                    book.CoverImage = "/SiteResimleri/" + fileName;
+
+                    book.CreateDate = DateTime.Now;
+                    book.ModifyDate = DateTime.Now;
+                    db.Books.Add(book);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(book);

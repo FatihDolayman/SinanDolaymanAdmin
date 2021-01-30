@@ -23,7 +23,7 @@
 
 @foreach (var book in Model)
 {
-    <div style="border:none" class="card mb-3">
+    <div style="border:none; height:220px" class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a href="@Url.Action("Details","Book",new {id=book.Id })">
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <a href="@Url.Action("Details","Book",new {id=book.Id })"><h5 style="color:black" class="card-title">@book.Name</h5></a>
                     <p class="card-text">@book.Summary</p>
-                    <a type="submit" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.Id })"> Devamı...</a>
+                    <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.Id })"> Devamı...</a>
                 </div>
             </div>
         </div>

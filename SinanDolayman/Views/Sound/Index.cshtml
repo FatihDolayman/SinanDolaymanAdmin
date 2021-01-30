@@ -24,7 +24,7 @@
 
 @foreach (var makale in Model)
 {
-    <div style="border:none" class="card mb-3">
+    <div style="border:none; height:220px" class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a href="@Url.Action("Details","Sound",new {id=makale.Id })">
@@ -36,7 +36,7 @@
                     <a href="@Url.Action("Details","Sound",new {id=makale.Id })"><h5 style="color:black" class="card-title">@makale.Title</h5></a>
                     <p class="card-text">@makale.Summary</p>
                     <a href="@Url.Action("Details","Sound",new {id=makale.Id })">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Devamı...</button>
+                        <button id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" type="submit">Devamı...</button>
                     </a>
 
                 </div>

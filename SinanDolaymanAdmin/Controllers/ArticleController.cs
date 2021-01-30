@@ -2,8 +2,10 @@
 using Entities;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
@@ -43,10 +45,30 @@ namespace SinanDolaymanAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary")] Article article)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary")] Article article, HttpPostedFileBase image )
         {
             if (ModelState.IsValid)
             {
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+                       
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(article);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SiteResimleri", fileName));
+
+                    article.CoverImage = "/SiteResimleri/" + fileName;
+                }
+
+
                 article.CreateDate = DateTime.Now;
                 article.ModifyDate = DateTime.Now;
                 db.Articles.Add(article);
@@ -77,16 +99,36 @@ namespace SinanDolaymanAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,CreateDate,ModifyDate,CoverImage,Summary")] Article article)
+        public ActionResult Edit([Bind(Include = "Id,Title,Content,CreateDate,ModifyDate,CoverImage,Summary")] Article article, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(article);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine(Server.MapPath("/SiteResimleri/"), fileName));
+
+                    article.CoverImage = "/SiteResimleri/" + fileName;
+                }
+
                 Article dbArticle = new Article();
                 dbArticle = db.Articles.Find(article.Id);
 
                 dbArticle.Content = article.Content;
                 dbArticle.Title = article.Title;
                 dbArticle.Content = article.Content;
+                dbArticle.CoverImage = article.CoverImage;
                 dbArticle.ModifyDate = DateTime.Now;
                 db.Entry(dbArticle).State = EntityState.Modified;
                 db.SaveChanges();

@@ -93,3 +93,20 @@
 .col-md-3 .fa-facebook {
     color: #3b5998;
 }
+
+
+
+
+#aramaButonu {
+    border-radius: 23px;
+    margin: 2px;
+    float: left;
+    width: 150px;  
+}
+
+
+#detayButonu {
+    border-radius: 23px;
+    margin: 2px;
+    float: left;
+}
