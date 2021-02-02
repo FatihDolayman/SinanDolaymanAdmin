@@ -29,13 +29,20 @@
     </h1>
 
     <p>
-        @Html.Raw(Model.VideoPath)
+
         <br />
         @Html.DisplayFor(model => model.CreateDate)
     </p>
-    <img class="pinterest-img"
-         src="~/Content/resim1.jpeg"
-         alt="" />
+    <div class="row row-cols-1 row-cols-md-3">
+        <iframe src="@Model.VideoPath" frameborder="1" allowfullscreen></iframe>
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">@Model.Summary</p>
+            <a href="#" class="btn btn-primary">Button</a>
+        </div>
+    </div>
+    
+
 </div>
 
 

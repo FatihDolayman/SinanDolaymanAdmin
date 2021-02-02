@@ -38,7 +38,7 @@ namespace Entities
 
 
         [Display(Name = "Kategori Id")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
 
         [Display(Name = "Kategori")]

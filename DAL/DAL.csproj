@@ -94,6 +94,18 @@
     <Compile Include="Migrations\202101051915479_coverImage.designer.cs">
       <DependentUpon>202101051915479_coverImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101311831516_nullableKategori.cs" />
+    <Compile Include="Migrations\202101311831516_nullableKategori.designer.cs">
+      <DependentUpon>202101311831516_nullableKategori.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101311838184_nullables.cs" />
+    <Compile Include="Migrations\202101311838184_nullables.designer.cs">
+      <DependentUpon>202101311838184_nullables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101311846410_kategorinull.cs" />
+    <Compile Include="Migrations\202101311846410_kategorinull.designer.cs">
+      <DependentUpon>202101311846410_kategorinull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -134,6 +146,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101051915479_coverImage.resx">
       <DependentUpon>202101051915479_coverImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311831516_nullableKategori.resx">
+      <DependentUpon>202101311831516_nullableKategori.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311838184_nullables.resx">
+      <DependentUpon>202101311838184_nullables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311846410_kategorinull.resx">
+      <DependentUpon>202101311846410_kategorinull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

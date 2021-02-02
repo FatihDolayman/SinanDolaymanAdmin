@@ -4,16 +4,7 @@
     ViewBag.Title = Model.Title;
 }
 
-<head>
-    <style type="text/css">
-        #detayresim {
-            float: right;
-            position: relative;
-            z-index: 2;
-            color: white;
-        }
-    </style>
-</head>
+
 
 
 <div class="share-btn-container">
@@ -43,12 +34,65 @@
         <br />
         @Html.DisplayFor(model => model.CreateDate)
     </p>
-    <div style="max-width:700px" class="card">     
+    <div style="max-width:700px" class="card">
         <img id="detayresim" style="max-width:700px" src="@Model.CoverImage" class="card-img-bottom" alt="...">
     </div>
     @*<img width="500" class="pinterest-img"
-         src="@Model.CoverImage"
-         alt="" />*@
+        src="@Model.CoverImage"
+        alt="" />*@
+    <br />
+    <p>
+        <a class="btn btn-outline-info" data-toggle="collapse" href="#yorumYaz" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Yorum yap
+        </a>
+
+    </p>
+    <div class="collapse" id="yorumYaz">
+        @using (Html.BeginForm("Create", "ArticleComment", new { articleId = Model.Id }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card card-body">
+                <input placeholder="Adınızı girin..." class="form-control" name="commenter" />
+                <br />
+                <textarea name="comment" style="min-height:130px" placeholder="  Yorumunuzu girin..."></textarea>
+                <button type="submit" class="btn btn-success col-md-2" href="/">Gönder</button>
+            </div>
+        }
+    </div>
+    <br />
+    @foreach (var item in ViewBag.Comments)
+    {
+        <p>
+            @item.Content
+            <br />
+            @item.Commenter 
+        <br />
+            @item.Date.ToString("dd.MM.yyyy HH:MM")
+
+        </p>
+
+        <p>
+            <a class="btn btn-outline-info" data-toggle="collapse" href="#cevapYaz" role="button" aria-expanded="false" aria-controls="collapseExample">
+                ...
+            </a>
+
+        </p>
+        <div class="collapse" id="cevapYaz">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="card card-body">
+                    <input class="form-control" name="commenter" />
+                    <br />
+                    <textarea name="comment" style="min-height:130px" placeholder="yorumunuzu buraya yazınız..."></textarea>
+                    <button type="submit" class="btn btn-success col-md-2" href="/">Gönder</button>
+                </div>
+            }
+        </div>
+        <hr>
+    }
 </div>
 
 
@@ -60,20 +104,20 @@
     }
     function setFrefTwitter(title) {
         var t = title;
-        document.getElementById("shareTw").setAttribute("href", "https://twitter.com/share?url=" + encodeURIComponent(location.href) +"&text="+t);
+        document.getElementById("shareTw").setAttribute("href", "https://twitter.com/share?url=" + encodeURIComponent(location.href) + "&text=" + t);
     }
     function setFrefLinkedin(title) {
-        var t = title; 
+        var t = title;
         document.getElementById("shareLn").setAttribute("href", "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(location.href) + "&title=" + t);
     }
     function setFrefPinterest(image) {
         var img = image;
-        document.getElementById("sharePn").setAttribute("href", "https://pinterest.com/pin/create/bookmarklet/?media=" +img+ "&url=" + encodeURIComponent(location.href));
+        document.getElementById("sharePn").setAttribute("href", "https://pinterest.com/pin/create/bookmarklet/?media=" + img + "&url=" + encodeURIComponent(location.href));
     }
     function setFrefWhatsapp(title) {
         var t = title;
 
-        document.getElementById("shareWs").setAttribute("href", "https://api.whatsapp.com/send?text="+t+" "+ encodeURIComponent(location.href));
+        document.getElementById("shareWs").setAttribute("href", "https://api.whatsapp.com/send?text=" + t + " " + encodeURIComponent(location.href));
     }
 </script>
 

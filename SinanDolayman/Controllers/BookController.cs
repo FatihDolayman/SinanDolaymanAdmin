@@ -41,6 +41,8 @@ namespace SinanDolayman.Controllers
             {
                 return HttpNotFound();
             }
+            var comments = db.Comments.AsNoTracking().Where(a => a.Module == Module.Book && a.ModuleId == id).OrderByDescending(a => a.Date).ToList();
+            ViewBag.Comments = comments;
             return View(book);
         }
 

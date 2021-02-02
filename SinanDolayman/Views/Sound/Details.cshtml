@@ -33,9 +33,17 @@
         <br />
         @Html.DisplayFor(model => model.CreateDate)
     </p>
-    <img width="500" class="pinterest-img"
-         src="@Model.CoverImage"
-         alt="" />
+    <div style="max-width:700px" class="card">
+        <img id="detayresim" style="max-width:700px" src="@Model.CoverImage" class="card-img-bottom" alt="...">
+    </div>
+    @*<img width="500" class="pinterest-img"
+        src="@Model.CoverImage"
+        alt="" />*@
+
+    <audio controls="controls">
+        <source src="@Model.Path" type="audio/mp3" />
+        <source src="file.ogg" type="audio/ogg" />
+    </audio>
 </div>
 
 

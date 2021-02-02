@@ -4,80 +4,179 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detaylar</h2>
 
-<div>
-    <h4>Comment</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsOk)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsOk)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Commenter)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Commenter)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LikeCount)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LikeCount)
-        </dd>
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-10">
+                <!-- ============================================================== -->
+                <!-- pageheader  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header" id="top">
+                            <h2 class="pageheader-title">Yorum Detayları </h2>
+                            <p class="pageheader-text">@Model.Commenter</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Comment") " class="breadcrumb-link">Yorumlar</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Yorum Detay</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- overview  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-section" id="overview">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>@Model.Commenter</h2>
+                                    <p class="lead">@Html.Raw(Model.Content)</p>
+                                    <p>
+                                        <i class="far fa-thumbs-up"></i>@Html.Raw(Model.LikeCount) 
+                                        <i class="far fa-thumbs-down"></i>@Html.Raw(Model.DislikeCount)
+                                    </p>
+                                    <h3>Module: @Html.Raw(Model.Module)</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>
+                            @Html.ActionLink("Sil", "Delete", new { id = Model.Id }) |
+                            @Html.ActionLink("Listeye Dön", "Index")
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Date)
+                                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DislikeCount)
-        </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Date)
+                                    </dd>
+                                </dl>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
 
-        <dd>
-            @Html.DisplayFor(model => model.DislikeCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModuleId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModuleId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Module)
-        </dt>
-
-        <dd>
-          
-            @Html.DisplayFor(model => model.Module)
-        </dd>
-
-    </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div>
+        <h4>Comment</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsOk)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsOk)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Commenter)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Commenter)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LikeCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LikeCount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DislikeCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DislikeCount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ModuleId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ModuleId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Module)
+            </dt>
+
+            <dd>
+
+                @Html.DisplayFor(model => model.Module)
+            </dd>
+
+        </dl>
+    </div>*@
+

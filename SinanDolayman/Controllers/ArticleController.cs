@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Entities;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace SinanDolayman.Controllers
 {
@@ -21,6 +24,8 @@ namespace SinanDolayman.Controllers
             if (!String.IsNullOrEmpty(searchTerm))
             {
                 return View(db.Articles.Where(a=>a.Title.Contains(searchTerm)||a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList());
+
+                
             }
             else
             {
@@ -41,6 +46,8 @@ namespace SinanDolayman.Controllers
             {
                 return HttpNotFound();
             }
+            var comments = db.Comments.AsNoTracking().Where(a => a.Module == Module.Article && a.ModuleId == id).OrderByDescending(a=>a.Date).ToList();
+            ViewBag.Comments = comments;
             return View(article);
         }
 

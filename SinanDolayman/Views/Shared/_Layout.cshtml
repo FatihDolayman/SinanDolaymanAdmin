@@ -9,7 +9,8 @@
     <link href="~/Content/styleForShareButtons.css" rel="stylesheet" />
     <link href="~/Content/forSmallScreens.css" rel="stylesheet" />
     <link href="~/Content/Genel.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    @*<script src="~/Scripts/jquery-3.5.1.js"></script>*@
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </head>
 
@@ -23,37 +24,30 @@
                 @*<img id="siteLogosu" width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" />*@
             </div>
         </nav>
-
-
+       
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
             <div class="container">
-                <form>
-                    <div class="collapse navbar-collapse" id="navbarColor01">
-                        <ul class="navbar-nav mr-auto">
-                            <li><a class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a></li>
-
-                            <a class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a>
-                            <a class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a>
-                            <a class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a>
-                            <a class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a>
-
-                            <a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a>
-                        </ul>
-                                              
-
-                        <form class="form-inline">
-                            <input id="genelArama" name="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Ara" value="@ViewBag.SearchTerm" aria-label="Search">
-                            <button id="aramaButonu" class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
-                        </form>
-
-                    </div>
-                </form>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li><a class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a></li>
+                        <li> <a class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a></li>
+                        <li><a class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a></li>
+                        <li><a class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a></li>
+                        <li><a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a></li>                       
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input style="width:280px" id="genelArama" name="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Ara..." value="@ViewBag.SearchTerm" aria-label="Search">
+                        <button style="width:70px" id="aramaButonu" class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                    </form>
+                </div>
             </div>
+           
         </nav>
+
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

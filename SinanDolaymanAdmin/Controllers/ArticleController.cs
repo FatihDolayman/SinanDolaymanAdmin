@@ -45,7 +45,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary")] Article article, HttpPostedFileBase image )
+        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary")] Article article, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,6 @@ namespace SinanDolaymanAdmin.Controllers
 
 
                 article.CreateDate = DateTime.Now;
-                article.ModifyDate = DateTime.Now;
                 db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");

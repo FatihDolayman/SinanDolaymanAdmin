@@ -2,8 +2,10 @@
 using Entities;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
@@ -42,23 +44,38 @@ namespace SinanDolaymanAdmin.Controllers
             return View();
         }
 
-        // POST: Video/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,VideoPath,Summary,CreateDate,ModifyDate,CategoryId")] Video video)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary,VideoPath")] Video video, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(video);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine(Server.MapPath("/SiteResimleri/"), fileName));
+
+                    video.CoverImage = "/SiteResimleri/" + fileName;
+                }
+
                 video.CreateDate = DateTime.Now;
                 video.ModifyDate = DateTime.Now;
                 db.Videos.Add(video);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CategoryId = new SelectList(db.VideoCategories, "Id", "Name", video.CategoryId);
             return View(video);
         }
 
@@ -78,12 +95,10 @@ namespace SinanDolaymanAdmin.Controllers
             return View(video);
         }
 
-        // POST: Video/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,VideoPath,Summary,CreateDate,ModifyDate,CategoryId")] Video video)
+        public ActionResult Edit([Bind(Include = "Id,Title,VideoPath,Summary,CategoryId")] Video video)
         {
             if (ModelState.IsValid)
             {

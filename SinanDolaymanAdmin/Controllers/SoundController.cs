@@ -2,8 +2,10 @@
 using Entities;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
@@ -42,23 +44,37 @@ namespace SinanDolaymanAdmin.Controllers
             return View();
         }
 
-        // POST: Sound/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Summary,CreateDate,ModifyDate,CategoryId")] Sound sound)
+        public ActionResult Create([Bind(Include = "Id,Title,Summary,CategoryId")] Sound sound, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(sound);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine(Server.MapPath("/SiteResimleri/"), fileName));
+
+                    sound.CoverImage = "/SiteResimleri/" + fileName;
+                }
+
                 sound.CreateDate = DateTime.Now;
-                sound.ModifyDate = DateTime.Now;
-                db.Sounds.Add(sound);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.SoundCategories, "Id", "Name", sound.CategoryId);
             return View(sound);
         }
 

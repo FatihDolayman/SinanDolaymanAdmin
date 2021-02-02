@@ -7,13 +7,13 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header" id="top">
-                    <h2 class="pageheader-title">Makale Ekle </h2>
+                    <h2 class="pageheader-title">Makale Düzenle </h2>
                     <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
                                 <li class="breadcrumb-item"><a href="@Url.Action("Index","Article")" class="breadcrumb-link">Makaleler</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Makale Ekle</li>
+                                <li class="breadcrumb-item active" aria-current="page">Makale Düzenle</li>
                             </ol>
                         </nav>
                     </div>
@@ -30,7 +30,7 @@
                     <h3 class="section-title">Makaleler</h3>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Makale Ekle</h5>
+                    <h5 class="card-header">Makale Düzenle</h5>
                     <div class="card-body">
                         @using (Html.BeginForm("Edit", "Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {

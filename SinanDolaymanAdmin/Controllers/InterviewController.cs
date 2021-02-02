@@ -2,8 +2,10 @@
 using Entities;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
@@ -12,6 +14,7 @@ namespace SinanDolaymanAdmin.Controllers
     public class InterviewController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();
+        private object interview;
 
         // GET: Interview
         public ActionResult Index()
@@ -45,10 +48,29 @@ namespace SinanDolaymanAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,CreateDate,ModifyDate")] Interview interview)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,CreateDate,ModifyDate")] Interview interview, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(interview);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SiteResimleri", fileName));
+
+                    interview.CoverImage = "/SiteResimleri/" + fileName;
+                }
+
                 interview.CreateDate = DateTime.Now;
                 interview.ModifyDate = DateTime.Now;
                 db.Interviews.Add(interview);

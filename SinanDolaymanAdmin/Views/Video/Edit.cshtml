@@ -7,13 +7,13 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header" id="top">
-                    <h2 class="pageheader-title">Video Ekle </h2>
+                    <h2 class="pageheader-title">Video Düzenle </h2>
                     <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="breadcrumb-link">Anasayfa</a></li>
                                 <li class="breadcrumb-item"><a href="@Url.Action("Index","Article")" class="breadcrumb-link">Videolar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Video Ekle</li>
+                                <li class="breadcrumb-item active" aria-current="page">Video Düzenle</li>
                             </ol>
                         </nav>
                     </div>
@@ -30,7 +30,7 @@
                     <h3 class="section-title">Videolar</h3>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Video Ekle</h5>
+                    <h5 class="card-header">Video Düzenle</h5>
                     <div class="card-body">
                         @using (Html.BeginForm())
                         {
@@ -38,11 +38,21 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.Id)
 
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "col-form-label" })
                                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CoverImage, "Resim urlini buraya yapıştırınız", htmlAttributes: new { @class = "col-form-label" })
+                                @Html.EditorFor(model => model.CoverImage, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CoverImage, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                Veya
+                                <label for="videoImage"> Bir resim yükleyin</label>
+                                <input name="image" type="file" class="form-control-file" id="videoImage">
                             </div>
 
                             <div class="form-group">
@@ -50,11 +60,7 @@
                                 @Html.EditorFor(model => model.VideoPath, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.VideoPath, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CoverImage, htmlAttributes: new { @class = "col-form-label" })
-                                @Html.EditorFor(model => model.CoverImage, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CoverImage, "", new { @class = "text-danger" })
-                            </div>
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Summary)
                                 @Html.TextAreaFor(model => model.Summary, new { @class = "form-control" })
@@ -66,7 +72,7 @@
                                 @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                             </div>
-                            <input type="submit" value="Güncelle" class="btn btn-facebook" />
+                            <input type="submit" value="Düzenle" class="btn btn-facebook" />
 
                         }
                         <div>

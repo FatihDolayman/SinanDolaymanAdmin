@@ -33,11 +33,11 @@ namespace Entities
 
         [Display(Name = "Son Düzenlenme Tarihi")]
         [DataType(DataType.Date)]
-        public DateTime ModifyDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
 
 
         [Display(Name = "Kategori Id")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
 
         [Display(Name = "Kategori")]

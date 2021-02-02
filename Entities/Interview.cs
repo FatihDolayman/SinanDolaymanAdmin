@@ -15,8 +15,7 @@ namespace Entities
 
         [Display(Name="Başlık")]
         public string Title { get; set; }
-
-
+               
         [Display(Name = "Özet")]        
         public string Summary { get; set; }
 

@@ -98,7 +98,7 @@
 
 
 #aramaButonu {
-    border-radius: 23px;
+    border-radius: 1.5em;
     margin: 2px;
     float: left;
     width: 150px;  
@@ -106,7 +106,13 @@
 
 
 #detayButonu {
-    border-radius: 23px;
+    border-radius: 1.5em;
+    margin: 2px;
+    float: left;
+}
+
+#genelArama {
+    border-radius: 1.5em;
     margin: 2px;
     float: left;
 }
