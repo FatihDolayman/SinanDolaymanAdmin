@@ -29,7 +29,7 @@
     </h1>
 
     <p>
-        @Html.Raw(Model.Path)
+       
         <br />
         @Html.DisplayFor(model => model.CreateDate)
     </p>
@@ -40,9 +40,9 @@
         src="@Model.CoverImage"
         alt="" />*@
 
-    <audio controls="controls">
+    <br />  
+    <audio style="height:150px;width:600px; background-color:aquamarine"  controls="controls">
         <source src="@Model.Path" type="audio/mp3" />
-        <source src="file.ogg" type="audio/ogg" />
     </audio>
 </div>
 

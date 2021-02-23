@@ -47,9 +47,9 @@ namespace SinanDolaymanAdmin.Controllers
       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Summary,CategoryId")] Sound sound, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "Id,Title,Summary,CoverImage,Path,CategoryId")] Sound sound, HttpPostedFileBase image, HttpPostedFileBase soundFile)
         {
-            if (ModelState.IsValid)
+               if (ModelState.IsValid)
             {
                 string extension = String.Empty;
                 string fileName = String.Empty;
@@ -61,19 +61,32 @@ namespace SinanDolaymanAdmin.Controllers
                     {
 
                         ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        ViewBag.CategoryId = new SelectList(db.SoundCategories, "Id", "Name");
                         return View(sound);
                     }
 
                     fileName = Guid.NewGuid() + ".png";
-                    image.SaveAs(Path.Combine(Server.MapPath("/SiteResimleri/"), fileName));
+                    image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SoundResimleri", fileName));
 
-                    sound.CoverImage = "/SiteResimleri/" + fileName;
+                    sound.CoverImage = "/SoundResimleri/" + fileName;
+                }
+
+                string extension2 = String.Empty;
+                string fileName2 = String.Empty;
+                if (soundFile != null && soundFile.ContentLength > 0)
+                {
+                    extension2 = Path.GetExtension(soundFile.FileName);
+                    fileName2 = Guid.NewGuid() + ".mp3";
+                    soundFile.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SesDosyalari", fileName2));
+
+                    sound.Path = "/SesDosyalari/" + fileName2;
                 }
 
                 sound.CreateDate = DateTime.Now;
+                db.Sounds.Add(sound);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }          
 
             return View(sound);
         }
@@ -99,10 +112,29 @@ namespace SinanDolaymanAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Summary,CreateDate,ModifyDate,CategoryId")] Sound sound)
+        public ActionResult Edit([Bind(Include = "Id,Title,Summary,Audio,CreateDate,ModifyDate,CategoryId")] Sound sound, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                string extension = String.Empty;
+                string fileName = String.Empty;
+                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
+                {
+                    extension = Path.GetExtension(image.FileName);
+
+                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(sound);
+                    }
+
+                    fileName = Guid.NewGuid() + ".png";
+                    image.SaveAs(Path.Combine(Server.MapPath("/SiteResimleri/"), fileName));
+
+                    sound.CoverImage = "/SiteResimleri/" + fileName;
+                }
+
                 Sound dbSound = new Sound();
                 dbSound = db.Sounds.Find(sound.Id);
 
@@ -113,6 +145,7 @@ namespace SinanDolaymanAdmin.Controllers
                 db.Entry(dbSound).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
             ViewBag.CategoryId = new SelectList(db.SoundCategories, "Id", "Name", sound.CategoryId);
             return View(sound);

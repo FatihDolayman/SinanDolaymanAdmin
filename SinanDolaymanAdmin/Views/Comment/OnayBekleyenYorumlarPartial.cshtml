@@ -1,0 +1,25 @@
+﻿@model List<Entities.Comment>
+<table>
+    <tr>
+        <th>    </th>
+        <th>    </th>
+        <th class="pull-right">    </th>
+
+    </tr>
+    @foreach (var comment in Model)
+    {
+
+<tr>
+
+    <td>
+        <button onclick="onayla('@comment.Id')" class="btn btn-success">Onayla</button>
+    </td>
+    <td>
+        @comment.Content
+    </td>
+    <td class="pull-right">
+        <button onclick="sil('@comment.Id')" class="btn btn-danger">Sil</button>
+    </td>
+</tr>
+    }
+</table>

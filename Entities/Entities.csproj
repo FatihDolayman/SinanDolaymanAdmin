@@ -81,6 +81,7 @@
     <Compile Include="Article.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="CommentReply.cs" />
     <Compile Include="DolaymanUser.cs" />
     <Compile Include="Interview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

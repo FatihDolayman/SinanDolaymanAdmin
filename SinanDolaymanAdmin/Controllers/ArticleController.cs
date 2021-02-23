@@ -19,7 +19,7 @@ namespace SinanDolaymanAdmin.Controllers
         public ActionResult Index()
         {
             return View(db.Articles.ToList());
-        }
+        }     
 
         // GET: Article/Details/5
         public ActionResult Details(int? id)

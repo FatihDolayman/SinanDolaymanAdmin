@@ -148,8 +148,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\StringDuzenleyici.cs" />
+    <Compile Include="Helpers\SeoFriendlyRoute.cs" />
     <Compile Include="Helpers\ReplaceChars.cs" />
     <Compile Include="Models\AramaKategorisi.cs" />
+    <Compile Include="Models\ArticleIndexViewModel.cs" />
+    <Compile Include="Models\CommentWithRepliesViewModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -162,13 +166,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\forSmallScreens.css" />
     <Content Include="Content\Genel.css" />
-    <Content Include="Content\Images\Facebook.png" />
-    <Content Include="Content\Images\IMG_1934.JPG" />
-    <Content Include="Content\Images\IMG_1940.JPG" />
-    <Content Include="Content\Images\Sinan Dolayman Logo.jpg" />
-    <Content Include="Content\Images\Twitter.png" />
-    <Content Include="Content\Images\Youtube.png" />
-    <Content Include="Content\Images\İnstagram.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\resim1.jpeg" />
     <Content Include="Content\resim2.jpg" />
@@ -181,6 +178,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CommentScript.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -331,8 +329,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\SesDosyaları\" />
+    <Folder Include="Kitaplar\" />
+    <Folder Include="SesDosyalari\" />
     <Folder Include="SiteResimleri\" />
+    <Folder Include="SoundResimleri\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

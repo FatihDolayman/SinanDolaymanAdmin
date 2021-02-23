@@ -106,6 +106,18 @@
     <Compile Include="Migrations\202101311846410_kategorinull.designer.cs">
       <DependentUpon>202101311846410_kategorinull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102021501076_seslendirme.cs" />
+    <Compile Include="Migrations\202102021501076_seslendirme.designer.cs">
+      <DependentUpon>202102021501076_seslendirme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102022047446_soundPath.cs" />
+    <Compile Include="Migrations\202102022047446_soundPath.designer.cs">
+      <DependentUpon>202102022047446_soundPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102031356409_commentReply.cs" />
+    <Compile Include="Migrations\202102031356409_commentReply.designer.cs">
+      <DependentUpon>202102031356409_commentReply.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -155,6 +167,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101311846410_kategorinull.resx">
       <DependentUpon>202101311846410_kategorinull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102021501076_seslendirme.resx">
+      <DependentUpon>202102021501076_seslendirme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102022047446_soundPath.resx">
+      <DependentUpon>202102022047446_soundPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102031356409_commentReply.resx">
+      <DependentUpon>202102031356409_commentReply.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

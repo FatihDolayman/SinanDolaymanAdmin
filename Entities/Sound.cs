@@ -17,7 +17,7 @@ namespace Entities
         public string Title { get; set; }
 
         [Display(Name = "Kapak Resmi")]
-        public string CoverImage { get; set; }
+        public string CoverImage { get; set; }     
 
         [Display(Name = "Özet")]       
         public string Summary { get; set; }

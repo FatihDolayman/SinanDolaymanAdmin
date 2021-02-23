@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class DolaymanUserController : Controller
     {
         public DolaymanUserController()

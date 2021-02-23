@@ -36,25 +36,35 @@ namespace SinanDolayman.Controllers
             return View(comment);
         }
 
-        // GET: Comment/Create
-        public ActionResult Create()
+      
+
+        [HttpPost]
+        public JsonResult SendComment(int moduleId, string module, string commenterName, string commentContent)
         {
-            return View();
+            Comment comment = new Comment();
+
+            comment.ModuleId = moduleId;
+            comment.Commenter = commenterName;
+            comment.Content = commentContent;
+            comment.Module = (Module)Enum.Parse(typeof(Module), module);
+            comment.Date = DateTime.Now;
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
-      
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Content,Commenter,ModuleId,Module")] Comment comment)
+        public JsonResult SendCommentReply(int commentId, string commenterName, string commentContent)
         {
-            if (ModelState.IsValid)
-            {
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            CommentReply reply = new CommentReply();
 
-            return View(comment);
+            reply.Commenter = commenterName;
+            reply.Content = commentContent;
+            reply.CommentId = commentId;
+            reply.Date = DateTime.Now;
+            db.CommentReplies.Add(reply);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
         // GET: Comment/Edit/5

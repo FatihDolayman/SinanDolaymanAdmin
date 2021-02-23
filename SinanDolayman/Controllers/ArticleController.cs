@@ -10,7 +10,7 @@ using DAL;
 using Entities;
 using PagedList;
 using PagedList.Mvc;
-
+using SinanDolayman.Models;
 
 namespace SinanDolayman.Controllers
 {
@@ -21,20 +21,38 @@ namespace SinanDolayman.Controllers
         // GET: Article
         public ActionResult Index(string searchTerm)
         {
+
             if (!String.IsNullOrEmpty(searchTerm))
             {
-                return View(db.Articles.Where(a=>a.Title.Contains(searchTerm)||a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList());
+                var articles = db.Articles.Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate)
+                    .Select(a => new ArticleIndexViewModel()
+                    {
+                        Id = a.Id,
+                        Title = a.Title,
+                        Summary = a.Summary,
+                        CreateDate = a.CreateDate,
+                        CoverImage = a.CoverImage
+                    }).ToList();
+                return View(articles);
 
-                
             }
             else
             {
-                return View(db.Articles.OrderByDescending(a => a.CreateDate).ToList());
+                var articles = db.Articles.OrderByDescending(a => a.CreateDate)
+                                   .Select(a => new ArticleIndexViewModel()
+                                   {
+                                       Id = a.Id,
+                                       Title = a.Title,
+                                       Summary = a.Summary,
+                                       CreateDate = a.CreateDate,
+                                       CoverImage = a.CoverImage
+                                   }).ToList();
+                return View(articles);
             }
-            
+
         }
 
-        // GET: Article/Details/5
+       
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,12 +64,27 @@ namespace SinanDolayman.Controllers
             {
                 return HttpNotFound();
             }
-            var comments = db.Comments.AsNoTracking().Where(a => a.Module == Module.Article && a.ModuleId == id).OrderByDescending(a=>a.Date).ToList();
-            ViewBag.Comments = comments;
+            var commentsWithReplies = db.Comments.AsNoTracking().Where(a => a.Module == Module.Article && a.ModuleId == id&&a.IsOk==true).Select(a => new CommentWithRepliesViewModel
+            {
+               Id=a.Id,
+               Content=a.Content,
+               Date=a.Date,
+               Commenter=a.Commenter,
+               LikeCount=a.LikeCount,
+               DislikeCount=a.DislikeCount
+
+            }).OrderByDescending(a => a.Date).ToList();
+            var replies = db.CommentReplies.AsNoTracking().Where(a => a.IsOk == true).OrderBy(a=>a.Date).ToList();
+            foreach (var item in commentsWithReplies)
+            {
+                item.Replies = replies.Where(a=>a.CommentId==item.Id).ToList();              
+            }
+          
+            ViewBag.Comments = commentsWithReplies;
             return View(article);
         }
 
-          
+      
 
         protected override void Dispose(bool disposing)
         {

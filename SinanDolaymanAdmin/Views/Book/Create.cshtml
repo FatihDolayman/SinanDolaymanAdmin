@@ -52,6 +52,10 @@
                                 <label for="bookImage"> Bir resim yükleyin</label>
                                 <input name="image" type="file" class="form-control-file" id="bookImage">
                             </div>
+                            <div class="form-group">                                
+                                <label for="bookImage"> Kitap PDF'ini yükleyin</label>
+                                <input name="bookPdf" type="file" class="form-control-file" id="bookPdf">
+                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-form-label" })
                                 @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })

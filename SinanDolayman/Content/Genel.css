@@ -1,6 +1,17 @@
 ﻿
 
 .card {
-     box-shadow: 0 4px 3px 1px rgba(103, 128, 159, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/*.koyuRenk {
+    background-color: #212529 !important;
+}*/
+
+.koyuRenk {
+    background-color: #0079c1 !important;
+}
+
+#faceFooterIcon:hover {
+
+}

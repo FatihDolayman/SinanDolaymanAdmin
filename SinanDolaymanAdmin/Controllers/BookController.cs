@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SinanDolaymanAdmin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class BookController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();
@@ -44,12 +45,14 @@ namespace SinanDolaymanAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Content,Path")] Book book, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Content,Path")] Book book, HttpPostedFileBase image, HttpPostedFileBase bookPdf)
         {
             if (ModelState.IsValid)
             {
                 string extension = String.Empty;
                 string fileName = String.Empty;
+                string extension2 = String.Empty;
+                string fileName2 = String.Empty;
                 if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
                 {
                     extension = Path.GetExtension(image.FileName);
@@ -64,7 +67,23 @@ namespace SinanDolaymanAdmin.Controllers
                     fileName = Guid.NewGuid() + ".png";
                     image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SiteResimleri", fileName));
 
-                    book.CoverImage = "/SiteResimleri/" + fileName;
+                    book.CoverImage = "/SiteResimleri/" + fileName;                   
+                }
+                if (bookPdf != null)
+                {
+                    extension2 = Path.GetExtension(bookPdf.FileName);
+
+                    if (extension2.Contains("png") || extension2.Contains("doc") || extension2.Contains("docx"))
+                    {
+
+                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
+                        return View(book);
+                    }
+
+                    fileName2 = Guid.NewGuid() + ".pdf";
+                    bookPdf.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\Kitaplar", fileName2));
+
+                    book.Path = "/Kitaplar/" + fileName2;
 
                     book.CreateDate = DateTime.Now;
                     book.ModifyDate = DateTime.Now;
@@ -72,6 +91,7 @@ namespace SinanDolaymanAdmin.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
+
             }
 
             return View(book);

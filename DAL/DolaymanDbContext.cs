@@ -27,6 +27,8 @@ namespace DAL
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<CommentReply> CommentReplies { get; set; }
+
         public DbSet<Book> Books { get; set; }
 
 

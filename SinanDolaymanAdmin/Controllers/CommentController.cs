@@ -1,5 +1,8 @@
 ﻿using DAL;
 using Entities;
+using SinanDolaymanAdmin.Models;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -17,7 +20,39 @@ namespace SinanDolaymanAdmin.Controllers
             return View(db.Comments.ToList());
         }
 
-        // GET: Comment/Details/5
+        public ActionResult CommentsAreNotOk()
+        {
+           
+            return View();
+        }
+       
+        public ActionResult OnayBekleyenYorumlarPartial(int? id)
+        {
+            if (id!=-1&&id!=null)
+            {
+                var comment = db.Comments.Find(id);
+                comment.IsOk = true;
+                db.Entry(comment).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            var comments = db.Comments.Where(a => a.IsOk == false).ToList();
+
+            return PartialView(comments);
+        }
+
+        public ActionResult Sil(int id)
+        {
+            var comment = db.Comments.Find(id);
+            if (comment!=null)
+            {
+                db.Entry(comment).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+            
+            var comments = db.Comments.Where(a => a.IsOk == false).ToList();
+            return PartialView("OnayBekleyenYorumlarPartial", comments);
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,10 +69,6 @@ namespace SinanDolaymanAdmin.Controllers
             }
             return View(comment);
         }
-
-
-
-
 
         public ActionResult Delete(int? id)
         {

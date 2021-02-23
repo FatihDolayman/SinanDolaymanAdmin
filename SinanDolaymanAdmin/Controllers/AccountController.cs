@@ -50,8 +50,7 @@ namespace SinanDolaymanAdmin.Controllers
             }
         }
 
-        //
-        // GET: /Account/Login
+       
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -91,7 +90,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // GET: /Account/VerifyCode
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
@@ -105,7 +104,7 @@ namespace SinanDolaymanAdmin.Controllers
         //
         // POST: /Account/VerifyCode
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
@@ -133,8 +132,7 @@ namespace SinanDolaymanAdmin.Controllers
         }
 
         //
-        // GET: /Account/Register
-        [AllowAnonymous]
+        // GET: /Account/Register      
         public ActionResult Register()
         {
             return View();
@@ -142,8 +140,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost]    
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -170,9 +167,8 @@ namespace SinanDolaymanAdmin.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
+        
+       // [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -183,18 +179,16 @@ namespace SinanDolaymanAdmin.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
-        // GET: /Account/ForgotPassword
-        [AllowAnonymous]
+        
+       // [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ForgotPassword
+     
         [HttpPost]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -221,7 +215,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
+        //  [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -229,7 +223,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // GET: /Account/ResetPassword
-        [AllowAnonymous]
+       //  [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -238,7 +232,7 @@ namespace SinanDolaymanAdmin.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -263,7 +257,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
+       // [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -272,7 +266,7 @@ namespace SinanDolaymanAdmin.Controllers
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -282,7 +276,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // GET: /Account/SendCode
-        [AllowAnonymous]
+       // [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
@@ -298,7 +292,7 @@ namespace SinanDolaymanAdmin.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
@@ -315,9 +309,8 @@ namespace SinanDolaymanAdmin.Controllers
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
-        //
-        // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
+     
+        //[AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -348,7 +341,7 @@ namespace SinanDolaymanAdmin.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
@@ -395,7 +388,7 @@ namespace SinanDolaymanAdmin.Controllers
 
         //
         // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
+        //   [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();
