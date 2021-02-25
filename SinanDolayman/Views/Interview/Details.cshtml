@@ -14,7 +14,7 @@
     <a target="_blank" onclick="setFrefLinkedin('@Model.Title')" id="shareLn" href="#">
         <i class="fab fa-linkedin"></i>
     </a>
-    <a target="_blank" onclick="setFrefPinterest('@Model.Title')" id="sharePn" href="#">
+    <a target="_blank" onclick="setFrefPinterest('@Model.CoverImage')" id="sharePn" href="#">
         <i class="fab fa-pinterest"></i>
     </a>
     <a target="_blank" onclick="setFrefWhatsapp('@Model.Title')" id="shareWs" href="#">
@@ -34,9 +34,7 @@
     <div style="max-width:700px" class="card">
         <img id="detayresim" style="max-width:700px" src="@Model.CoverImage" class="card-img-bottom" alt="...">
     </div>
-    @*<img class="pinterest-img"
-        src="~/Content/resim1.jpeg"
-        alt="" />*@
+    
 </div>
 
 
@@ -54,8 +52,8 @@
         var t = title;
         document.getElementById("shareLn").setAttribute("href", "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(location.href));
     }
-    function setFrefPinterest(title) {
-        var t = title;
+    function setFrefPinterest(image) {
+        var t = image;
         document.getElementById("sharePn").setAttribute("href", "https://pinterest.com/pin/create/bookmarklet/?media=[post-img]&url=" + encodeURIComponent(location.href));
     }
     function setFrefWhatsapp(title) {

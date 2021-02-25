@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "CommentRepliesAreNotOk";
+}
+
+<body onload="onayla()">
+    <br />
+    <br />
+    <div class="container">
+        <h2>Onay bekleyen yanıtlar</h2>
+        <div id="onayBekleyenler">
+
+        </div>
+        <br />
+        <br />
+    </div>
+</body>
+
+
+
+<script>
+    function onayla(id) {
+        if (id==null) {
+            id =-1;
+        }
+        $.ajax({
+            url: '/CommentReply/OnayBekleyenCevaplarPartial/',
+            data: { id },
+            type: 'POST',
+            dataType: 'html',
+            success: function (data) {
+                $("#onayBekleyenler").html(data);
+            },
+            error: function () {
+                alert("hata alındı");
+            }
+
+        });
+    }
+
+    function sil(id) {
+        $.ajax({
+            url: '/CommentReply/Sil/',
+            data: { id },
+            type: 'POST',
+            dataType: 'html',
+            success: function (data) {
+                $("#onayBekleyenler").html(data);
+            },
+            error: function () {
+                alert("hata alındı");
+            }
+
+        });
+    }
+</script>

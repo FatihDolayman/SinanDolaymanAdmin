@@ -22,6 +22,18 @@ namespace SinanDolayman
          new RouteValueDictionary(new { controller = "Book", action = "Details" }),
          new MvcRouteHandler()));
 
+            routes.Add("InterviewDetails", new SeoFriendlyRoute("Interview/Details/{id}",
+         new RouteValueDictionary(new { controller = "Interview", action = "Details" }),
+         new MvcRouteHandler()));
+
+            routes.Add("SoundDetails", new SeoFriendlyRoute("Sound/Details/{id}",
+         new RouteValueDictionary(new { controller = "Sound", action = "Details" }),
+         new MvcRouteHandler()));
+
+            routes.Add("VideoDetails", new SeoFriendlyRoute("Video/Details/{id}",
+         new RouteValueDictionary(new { controller = "Video", action = "Details" }),
+         new MvcRouteHandler()));
+
             routes.MapRoute(
               name: "Default",
               url: "{controller}/{action}/{id}",

@@ -1,0 +1,25 @@
+﻿@model List<Entities.CommentReply>
+<table>
+    <tr>
+        <th>    </th>
+        <th>    </th>
+        <th class="pull-right">    </th>
+
+    </tr>
+    @foreach (var commentReply in Model)
+    {
+
+<tr>
+
+    <td>
+        <button onclick="onayla('@commentReply.Id')" class="btn btn-success">Onayla</button>
+    </td>
+    <td>
+        @commentReply.Content
+    </td>
+    <td class="pull-right">
+        <button onclick="sil('@commentReply.Id')" class="btn btn-danger">Sil</button>
+    </td>
+</tr>
+    }
+</table>

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Entities;
+using SinanDolayman.Models;
+
 
 namespace SinanDolayman.Controllers
 {
@@ -20,11 +22,29 @@ namespace SinanDolayman.Controllers
         {
             if (!String.IsNullOrEmpty(searchTerm))
             {
-                return View(db.Videos.Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList());
+                var videos = db.Videos.Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate)
+                                    .Select(a => new VideoIndexViewModel()
+                                    {
+                                        Id = a.Id,
+                                        Title = a.Title,
+                                        Summary = a.Summary,
+                                        CreateDate = a.CreateDate,
+                                        CoverImage = a.CoverImage
+                                    }).ToList();
+                return View(videos);
             }
             else
             {
-                return View(db.Videos.OrderByDescending(a => a.CreateDate).ToList());
+                var videos = db.Videos.OrderByDescending(a => a.CreateDate)
+                                                   .Select(a => new VideoIndexViewModel()
+                                                   {
+                                                       Id = a.Id,
+                                                       Title = a.Title,
+                                                       Summary = a.Summary,
+                                                       CreateDate = a.CreateDate,
+                                                       CoverImage = a.CoverImage
+                                                   }).ToList();
+                return View(videos);
             }
         }
 
@@ -40,8 +60,23 @@ namespace SinanDolayman.Controllers
             {
                 return HttpNotFound();
             }
-            var comments = db.Comments.AsNoTracking().Where(a => a.Module == Module.Video && a.ModuleId == id).OrderByDescending(a => a.Date).ToList();
-            ViewBag.Comments = comments;
+            var commentsWithReplies = db.Comments.AsNoTracking().Where(a => a.Module == Module.Video && a.ModuleId == id && a.IsOk == true).Select(a => new CommentWithRepliesViewModel
+            {
+                Id = a.Id,
+                Content = a.Content,
+                Date = a.Date,
+                Commenter = a.Commenter,
+                LikeCount = a.LikeCount,
+                DislikeCount = a.DislikeCount
+
+            }).OrderByDescending(a => a.Date).ToList();
+            var replies = db.CommentReplies.AsNoTracking().Where(a => a.IsOk == true).OrderBy(a => a.Date).ToList();
+            foreach (var item in commentsWithReplies)
+            {
+                item.Replies = replies.Where(a => a.CommentId == item.Id).ToList();
+            }
+
+            ViewBag.Comments = commentsWithReplies;
             return View(video);
         }
                

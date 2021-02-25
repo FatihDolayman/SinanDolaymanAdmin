@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entities.Book>
+﻿@model IEnumerable<SinanDolayman.Models.BookIndexViewModel>
 <br />
 @{
     ViewBag.Title = "Kitaplar";
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <a href="@Url.Action("Details","Book",new {id=book.Id })"><h5 style="color:black" class="card-title">@book.Name</h5></a>
                     <p class="card-text">@book.Summary</p>
-                    <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.Id })"> Devamı...</a>
+                    <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Book",new {id=book.GenerateSlug()})"> Devamı...</a>
                 </div>
             </div>
         </div>

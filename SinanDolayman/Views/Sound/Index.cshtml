@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entities.Sound>
+﻿@model IEnumerable<SinanDolayman.Models.SoundIndexViewModel>
 <br />
 @{
     ViewBag.Title = "Sesler";
@@ -22,22 +22,21 @@
 }
 
 
-@foreach (var makale in Model)
+@foreach (var sound in Model)
 {
     <div style="border:none; height:210px" class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <a href="@Url.Action("Details","Sound",new {id=makale.Id })">
-                    <img src="@makale.CoverImage" class="card-img" height="210" width="240" alt="...">
+                <a href="@Url.Action("Details","Sound",new {id=sound.Id })">
+                    <img src="@sound.CoverImage" class="card-img" height="210" width="240" alt="...">
                 </a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <a href="@Url.Action("Details","Sound",new {id=makale.Id })"><h5 style="color:black" class="card-title">@makale.Title</h5></a>
-                    <p class="card-text">@makale.Summary</p>
-                    <a href="@Url.Action("Details","Sound",new {id=makale.Id })">
-                        <button id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" type="submit">Devamı...</button>
-                    </a>
+                    <a href="@Url.Action("Details","Sound",new {id=sound.Id })"><h5 style="color:black" class="card-title">@sound.Title</h5></a>
+                    <p class="card-text">@sound.Summary</p>
+                    <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Sound", new {id=sound.GenerateSlug()})"> Devamı...</a>
+
 
                 </div>
             </div>

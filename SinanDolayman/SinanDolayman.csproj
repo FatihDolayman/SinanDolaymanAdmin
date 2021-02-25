@@ -152,6 +152,10 @@
     <Compile Include="Helpers\SeoFriendlyRoute.cs" />
     <Compile Include="Helpers\ReplaceChars.cs" />
     <Compile Include="Models\AramaKategorisi.cs" />
+    <Compile Include="Models\SoundIndexViewModel.cs" />
+    <Compile Include="Models\VideoIndexViewModel.cs" />
+    <Compile Include="Models\BookIndexViewModel.cs" />
+    <Compile Include="Models\InterviewIndexViewModel.cs" />
     <Compile Include="Models\ArticleIndexViewModel.cs" />
     <Compile Include="Models\CommentWithRepliesViewModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
@@ -281,6 +285,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="SiteResimleri\SinanDolaymanLogo.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -331,8 +336,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Kitaplar\" />
     <Folder Include="SesDosyalari\" />
-    <Folder Include="SiteResimleri\" />
     <Folder Include="SoundResimleri\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
