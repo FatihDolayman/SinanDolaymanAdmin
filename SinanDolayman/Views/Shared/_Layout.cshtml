@@ -9,9 +9,71 @@
     <link href="~/Content/styleForShareButtons.css" rel="stylesheet" />
     <link href="~/Content/forSmallScreens.css" rel="stylesheet" />
     <link href="~/Content/Genel.css" rel="stylesheet" />
+
+
     @*<script src="~/Scripts/jquery-3.5.1.js"></script>*@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    
+
+    <style>
+        .search-box {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 40px;
+            padding: 0;
+            background: #2f3640;
+        }
+
+            .search-box:hover > .search-txt {
+                width: 240px;
+                padding: 0 4px;
+            }
+
+            .search-box:hover {
+                margin-right:0;
+            }
+
+            .search-box:hover > .search-btn {
+                background: white;
+                color: black;
+                margin-top: 2px;
+            }
+
+        .search-btn {
+            margin-top: 2px;
+            float: right;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.4s;
+            color: white;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+            .search-btn > i {
+                font-size: 24px;
+            }
+
+        .search-txt {
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            padding: 0;
+            color: white;
+            font-size: 16px;
+            transition: 0.4s;
+            line-height: 40px;
+            width: 0px;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -19,33 +81,35 @@
 
         <nav style="height:120px;" class="navbar navbar-light bg-light">
             <div style="text-align:center;margin:auto">
-
                 <a href="@Url.Action("Index","Home")"><img id="siteLogosu" width="650" src="~/SiteResimleri/SinanDolaymanLogo.jpg" /></a>
-                @*<img id="siteLogosu" width="650" src="~/Content/Images/Sinan Dolayman Logo.jpg" />*@
             </div>
+
         </nav>
-       
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark koyuRenk">
-            <div class="container">
+            <div class="container ">
                 <a class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li><a class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a></li>
                         <li> <a class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a></li>
                         <li><a class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a></li>
                         <li><a class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a></li>
-                        <li><a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a></li>                       
+                        <li><a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a></li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input style="width:280px" id="genelArama" name="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Ara..." value="@ViewBag.SearchTerm" aria-label="Search">
-                        <button style="width:70px" id="aramaButonu" class="btn btn-outline-warning my-2 my-sm-0" type="submit">Ara</button>
+
+                    <form class="form-inline">
+                        <div class="search-box">
+                            <input id="genelArama" name="searchTerm" class="search-txt" type="text" placeholder="Arama yapın..." value="@ViewBag.SearchTerm" aria-label="Search">
+                            <a type="submit" class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                        </div>
                     </form>
                 </div>
             </div>
-           
+
         </nav>
 
 
@@ -82,15 +146,15 @@
 
 
     <div style="min-height:700px" class="container body-content">
+
         @RenderBody()
         <hr />
-
 
     </div>
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/bootstrap.js"></script>
 
-    <footer style=" background-color: #0079c1">
+    <!--<footer style=" background-color: #0079c1">
         <div class="container">
             <div class="row well">
                 <div style="color:white;margin-bottom:20px" class="col-md-9">
@@ -116,19 +180,46 @@
                         <a style="color:white" href="https://www.facebook.com/sinan.dolayman"><i  id="faceFooterIcon" class="fab fa-facebook fa-2x"></i></a>
                         <a style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter fa-2x"></i></a>
                         <a style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram fa-2x"></i></a>
-                        <a style="color:white" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i class="fab fa-youtube fa-2x"></i></a>
-
-                        @*<a style="background-color:#0079c1; color:white" href="https://www.facebook.com/sinan.dolayman"><i class="fab fa-facebook-square fa-2x"></i></a>
-                        <a style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter-square fa-2x"></i></a>
-                        <a style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram-square fa-2x"></i></a>
-                        <a style="color:white; background-color:#0079c1" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i class="fab fa-youtube fa-2x"></i></a>*@
-                    </div>
+                        <a style="color:white" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i class="fab fa-youtube fa-2x"></i></a>-->
+    @*<a style="background-color:#0079c1; color:white" href="https://www.facebook.com/sinan.dolayman"><i class="fab fa-facebook-square fa-2x"></i></a>
+        <a style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter-square fa-2x"></i></a>
+        <a style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram-square fa-2x"></i></a>
+        <a style="color:white; background-color:#0079c1" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i class="fab fa-youtube fa-2x"></i></a>*@
+    <!--</div>
                 </div>
 
             </div>
         </div>
+    </footer>-->
+
+    <footer style=" background-color: #0079c1; min-height:200px">
+        <div class="container pb-5">
+            <div style="text-align:center;margin:auto">
+                <a href="@Url.Action("Index","Home")"><img id="siteLogosu" width="650" src="~/SiteResimleri/SinanDolaymanBeyazLogo.jpg" /></a>
+            </div>
+            <hr style="background-color:white" />
+          
+
+            <div class="well d-flex justify-content-between">
+                <div>
+                    <a style="color:white; font-size:22px" href="#">Anasayfa</a>
+                    <a class="ml-3" style="color:white; font-size:22px" href="#">Makaleler</a>
+                    <a class="ml-3" style="color:white; font-size:22px" href="#">Kitaplar</a>
+                    <a class="ml-3" style="color:white; font-size:22px" href="#">Videolar</a>
+                    <a class="ml-3" style="color:white; font-size:22px" href="#">Sesler</a>
+                    <a style="color:white; font-size:22px" href="#">Röportajlar</a>
+                </div>
+                <div>
+                    <a class="mr-3" style="color:white" href="https://www.facebook.com/sinan.dolayman"><i id="faceFooterIcon" class="fab fa-facebook fa-2x"></i></a>
+                    <a class="mr-3" style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter fa-2x"></i></a>
+                    <a class="mr-3" style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a style="color:white" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i" class="fab fa-youtube fa-2x"></i></a>
+
+                </div>
+            </div>
+            <hr class="mt-6 mb-6" style="background-color:white" />
+        </div>
     </footer>
-   
 </body>
 </html>
 

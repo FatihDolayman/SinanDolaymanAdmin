@@ -25,7 +25,14 @@ namespace SinanDolaymanAdmin.Controllers
            
             return View();
         }
-       
+        public ActionResult OnayBekleyenYorumSayisi()
+        {
+            int yorumSayisi = db.Comments.Where(a => a.IsOk == false).Count();
+            int yanitSayisi = db.CommentReplies.Where(a => a.IsOk == false).Count();
+
+
+            return PartialView(yorumSayisi+ yanitSayisi);
+        }
         public ActionResult OnayBekleyenYorumlarPartial(int? id)
         {
             if (id!=-1&&id!=null)

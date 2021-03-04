@@ -1090,6 +1090,7 @@
     <Content Include="Views\CommentReply\Index.cshtml" />
     <Content Include="Views\CommentReply\CommentRepliesAreNotOk.cshtml" />
     <Content Include="Views\CommentReply\OnayBekleyenCevaplarPartial.cshtml" />
+    <Content Include="Views\Comment\OnayBekleyenYorumSayisi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

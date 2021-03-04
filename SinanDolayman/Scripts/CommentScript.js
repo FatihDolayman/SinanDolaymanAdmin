@@ -10,6 +10,7 @@ function sendComment(moduleId,module) {
         dataType:'JSON',
         success: function () {
             alert("yorumunuz onaylandıktan sonra yayınlanacaktır");
+            document.getElementById("commentArea").value = "";
         },
         error: function () {            
             alert("hata alındı");
@@ -30,6 +31,7 @@ function sendCommentReply(commentId,commenterName) {
         dataType: 'JSON',
         success: function () {
             alert("yorumunuz onaylandıktan sonra yayınlanacaktır");
+            document.getElementById("replyContentArea" + commentId).value = "";
         },
         error: function () {
             alert("hata alındı");
@@ -49,6 +51,7 @@ function sendReplyToReply(commentId,replyId,replierName) {
         dataType: 'JSON',
         success: function () {
             alert("yorumunuz onaylandıktan sonra yayınlanacaktır");
+            document.getElementById("childReplyContentArea" + replyId).value = "";
         },
         error: function () {
             alert("hata alındı");

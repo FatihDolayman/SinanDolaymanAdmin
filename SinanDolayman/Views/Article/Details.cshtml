@@ -69,10 +69,10 @@
         string dinamikCevapYazAlanId = "cevapYaz" + item.Id;
         <p>
             <div>
-                @item.Commenter &nbsp
+                <d style="font-size:25px">@item.Commenter &nbsp</d>
+                
                 <d style="font-size:15px"> @item.Date.ToString("dd.MM.yyyy HH:MM")</d>
             </div>
-            <br />
             @item.Content
         </p>
         <p>
@@ -99,17 +99,12 @@
             string dinamikCevapAreaId = "childReplyContentArea" + reply.Id;
             string dinamikCevabaCevapYazAlanId = "childCevapYaz" + reply.Id;
             <div style="margin-left:50px">
-                @reply.Commenter &nbsp
+                <d style="font-size:25px">@reply.Commenter &nbsp</d>
                 <d style="font-size:15px"> @reply.Date.ToString("dd.MM.yyyy HH:MM")</d>
             </div>
-            <br />
             <p style="margin-left:50px">
 
                 @reply.Content
-                <br />
-                @reply.Commenter
-                <br />
-                @reply.Date.ToString("dd.MM.yyyy HH:MM")
                 <br />
                 <a class="btn btn-outline-info" style="border:none" data-toggle="collapse" href="#@dinamikCevabaCevapYazAlanId" role="button" aria-expanded="false" aria-controls="@dinamikCevabaCevapYazAlanId">
                     <i class="fas fa-reply"></i> Yanıtla
