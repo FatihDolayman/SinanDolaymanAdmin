@@ -65,9 +65,9 @@ namespace SinanDolaymanAdmin.Controllers
                     }
 
                     fileName = Guid.NewGuid() + ".png";
-                    image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SiteResimleri", fileName));
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Images/"), fileName));
 
-                    book.CoverImage = "/SiteResimleri/" + fileName;                   
+                    book.CoverImage = "~/KitapResimleri/" + fileName;                   
                 }
                 if (bookPdf != null)
                 {

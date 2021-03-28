@@ -36,7 +36,14 @@ namespace SinanDolayman.Controllers
             return View(comment);
         }
 
-      
+        public ActionResult YorumSayisi()
+        {
+            int yorumSayisi = db.Comments.Where(a => a.IsOk == true).Count();
+            int yanitSayisi = db.CommentReplies.Where(a => a.IsOk == true).Count();
+
+
+            return PartialView(yorumSayisi + yanitSayisi);
+        }
 
         [HttpPost]
         public JsonResult SendComment(int moduleId, string module, string commenterName, string commentContent)
@@ -57,7 +64,7 @@ namespace SinanDolayman.Controllers
         public JsonResult SendCommentReply(int commentId, string commenterName, string commentContent)
         {
             CommentReply reply = new CommentReply();
-
+          
             reply.Commenter = commenterName;
             reply.Content = commentContent;
             reply.CommentId = commentId;

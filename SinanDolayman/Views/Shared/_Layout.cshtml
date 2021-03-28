@@ -9,73 +9,35 @@
     <link href="~/Content/styleForShareButtons.css" rel="stylesheet" />
     <link href="~/Content/forSmallScreens.css" rel="stylesheet" />
     <link href="~/Content/Genel.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
 
-
-    @*<script src="~/Scripts/jquery-3.5.1.js"></script>*@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <style>
-        .search-box {
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 40px;
-            padding: 0;
-            background: #2f3640;
-        }
-
-            .search-box:hover > .search-txt {
-                width: 240px;
-                padding: 0 4px;
-            }
-
-            .search-box:hover {
-                margin-right:0;
-            }
-
-            .search-box:hover > .search-btn {
-                background: white;
-                color: black;
-                margin-top: 2px;
-            }
-
-        .search-btn {
-            margin-top: 2px;
-            float: right;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #2f3640;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.4s;
-            color: white;
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-            .search-btn > i {
-                font-size: 24px;
-            }
-
-        .search-txt {
-            border: none;
-            background: none;
-            outline: none;
-            float: left;
-            padding: 0;
-            color: white;
-            font-size: 16px;
-            transition: 0.4s;
-            line-height: 40px;
-            width: 0px;
-            font-weight: bold;
-        }
-    </style>
 
 </head>
 
+<style>
+    #faceFooterIcon:hover {
+        transform: scale(1.2);
+        transition: 500ms;
+    }
+
+    #twitterFooterIcon:hover {
+        transform: scale(1.2);
+        transition: 500ms;
+    }
+
+    #youtubeFooterIcon:hover {
+        transform: scale(1.2);
+        transition: 500ms;
+    }
+
+    #instagramFooterIcon:hover {
+        transform: scale(1.2);
+        transition: 500ms;
+    }
+</style>
 <body>
     <div>
 
@@ -102,11 +64,21 @@
                     </ul>
 
                     <form class="form-inline">
-                        <div class="search-box">
-                            <input id="genelArama" name="searchTerm" class="search-txt" type="text" placeholder="Arama yapın..." value="@ViewBag.SearchTerm" aria-label="Search">
-                            <a type="submit" class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                        <div id="boxContainer">
+                            <table class="elementsContainer">
+                                <tr>
+                                    <td>
+                                        <input id="genelArama" name="searchTerm" type="text" class="search" value="@ViewBag.SearchTerm" aria-label="Search" placeholder="Arama yapın..." />
+                                    </td>
+                                    <td>
+                                        <a type="submit" class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </form>
+
+
                 </div>
             </div>
 
@@ -151,10 +123,7 @@
         <hr />
 
     </div>
-    @RenderSection("scripts", required: false)
-    <script src="~/Scripts/bootstrap.js"></script>
-
-    <!--<footer style=" background-color: #0079c1">
+    <footer style=" background-color: #0079c1">
         <div class="container">
             <div class="row well">
                 <div style="color:white;margin-bottom:20px" class="col-md-9">
@@ -171,56 +140,28 @@
 
 
 
-                <div id="sosyalMedyalarr" style=" margin-top: 20px; background-color: #0079c1; float: right; border: none" >
+                <div id="sosyalMedyalarr" style=" margin-top: 20px; background-color: #0079c1; float: right; border: none">
                     <div style="border:none;background-color:transparent;" class="card-header">
                         <h5 style="color:white">Sosyal Medya</h5>
                     </div>
                     <div class="card-body pull-right">
 
-                        <a style="color:white" href="https://www.facebook.com/sinan.dolayman"><i  id="faceFooterIcon" class="fab fa-facebook fa-2x"></i></a>
-                        <a style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter fa-2x"></i></a>
-                        <a style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram fa-2x"></i></a>
-                        <a style="color:white" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i class="fab fa-youtube fa-2x"></i></a>-->
-    @*<a style="background-color:#0079c1; color:white" href="https://www.facebook.com/sinan.dolayman"><i class="fab fa-facebook-square fa-2x"></i></a>
-        <a style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter-square fa-2x"></i></a>
-        <a style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram-square fa-2x"></i></a>
-        <a style="color:white; background-color:#0079c1" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i class="fab fa-youtube fa-2x"></i></a>*@
-    <!--</div>
-                </div>
+                        <a target="_blank" style="color:white" href="https://www.facebook.com/sinan.dolayman"><i id="faceFooterIcon" class="fab fa-facebook fa-2x"></i></a>
+                        <a target="_blank" style="color:white" href="https://twitter.com/sinandolayman"><i id="twitterFooterIcon" class="fab fa-twitter fa-2x"></i></a>
+                        <a target="_blank" style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i id="instagramFooterIcon" class="fab fa-instagram fa-2x"></i></a>
+                        <a target="_blank" style="color:white" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i id="youtubeFooterIcon" class="fab fa-youtube fa-2x"></i></a>
 
-            </div>
-        </div>
-    </footer>-->
-
-    <footer style=" background-color: #0079c1; min-height:200px">
-        <div class="container pb-5">
-            <div style="text-align:center;margin:auto">
-                <a href="@Url.Action("Index","Home")"><img id="siteLogosu" width="650" src="~/SiteResimleri/SinanDolaymanBeyazLogo.jpg" /></a>
-            </div>
-            <hr style="background-color:white" />
-          
-
-            <div class="well d-flex justify-content-between">
-                <div>
-                    <a style="color:white; font-size:22px" href="#">Anasayfa</a>
-                    <a class="ml-3" style="color:white; font-size:22px" href="#">Makaleler</a>
-                    <a class="ml-3" style="color:white; font-size:22px" href="#">Kitaplar</a>
-                    <a class="ml-3" style="color:white; font-size:22px" href="#">Videolar</a>
-                    <a class="ml-3" style="color:white; font-size:22px" href="#">Sesler</a>
-                    <a style="color:white; font-size:22px" href="#">Röportajlar</a>
-                </div>
-                <div>
-                    <a class="mr-3" style="color:white" href="https://www.facebook.com/sinan.dolayman"><i id="faceFooterIcon" class="fab fa-facebook fa-2x"></i></a>
-                    <a class="mr-3" style="color:white" href="https://twitter.com/sinandolayman"><i class="fab fa-twitter fa-2x"></i></a>
-                    <a class="mr-3" style="color:white" href="https://www.instagram.com/sinandolayman/?hl=tr"><i class="fab fa-instagram fa-2x"></i></a>
-                    <a style="color:white" href="https://www.youtube.com/channel/UCEP6lb7t_ApyK7Jnm9cMV7Q"><i" class="fab fa-youtube fa-2x"></i></a>
+                    </div>
 
                 </div>
             </div>
-            <hr class="mt-6 mb-6" style="background-color:white" />
-        </div>
     </footer>
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/bootstrap.js"></script>
+
 </body>
+
 </html>
 
 

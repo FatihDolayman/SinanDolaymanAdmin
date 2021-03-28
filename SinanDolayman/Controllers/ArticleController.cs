@@ -81,6 +81,7 @@ namespace SinanDolayman.Controllers
             }
           
             ViewBag.Comments = commentsWithReplies;
+         
             return View(article);
         }
 

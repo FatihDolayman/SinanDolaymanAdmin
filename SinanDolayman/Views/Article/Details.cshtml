@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = Model.Title;
 }
-
-
+@using SinanDolayman.Helpers
+<link href="~/Content/Comment.css" rel="stylesheet" />
 
 
 <div class="share-btn-container">
@@ -37,122 +37,137 @@
     <div style="max-width:700px" class="card">
         <img id="detayresim" style="max-width:700px" src="@Model.CoverImage" class="card-img-bottom" alt="...">
     </div>
-    
+
     <br />
     <p>
         <a class="btn btn-outline-info" data-toggle="collapse" href="#yorumYaz" role="button" aria-expanded="false" aria-controls="collapseExample">
             <i class="fas fa-comment"></i> Yorum yap
         </a>
-
     </p>
-    <div class="collapse" id="yorumYaz">
-        @{
-            <div class="card card-body">
-                <input id="commenterInput" placeholder="Adınızı girin..." class="form-control" name="commenter" />
-                <br />
-                <textarea id="commentArea" name="comment" style="min-height:130px" placeholder="  Yorumunuzu girin..."></textarea>
-                <br />
-                <div>
-                    <button onclick="sendComment('@Model.Id','Article')" type="submit" class="btn btn-success col-md-1" href="/">Gönder</button>
+    <div>
+        <div>
+            <br />
+            <p id="yorumMetin" style="font-size:30px"><i style="color:#808080;margin-left:10px;" class="fas fa-comment"></i> Bir yorum yazın</p>
+            @{
+                <div id="yorumAlanı" class="card card-body">
+                    <textarea id="commentArea" name="comment" style="min-height:130px" placeholder="  Yorumunuzu girin..."></textarea>
+                    <br />
+                    <input id="commenterInput" placeholder="Adınızı girin..." class="form-control" name="commenter" />
+                    <div>
+                        <button id="gonderButton" onclick="sendComment('@Model.Id','Article')" type="submit" class="btn btn-success col-md-1" href="/">Gönder</button>
+                    </div>
                 </div>
+            }
+            <br />
 
-
-
-            </div>
-        }
-    </div>
-    <br />
-    @foreach (var item in ViewBag.Comments)
-    {
-        string dinamikInputId = "replierNameInput" + item.Id;
-        string dinamikAreaId = "replyContentArea" + item.Id;
-        string dinamikCevapYazAlanId = "cevapYaz" + item.Id;
-        <p>
-            <div>
-                <d style="font-size:25px">@item.Commenter &nbsp</d>
-                
-                <d style="font-size:15px"> @item.Date.ToString("dd.MM.yyyy HH:MM")</d>
-            </div>
-            @item.Content
-        </p>
-        <p>
-            <a class="btn" style="border:none;color:#17a2b8" data-toggle="collapse" href="#@dinamikCevapYazAlanId" role="button" aria-expanded="false" aria-controls="@dinamikCevapYazAlanId">
-                <i class="fas fa-reply"></i> Yanıtla
-            </a>
-
-        </p>
-
-        <div class="collapse" id="@dinamikCevapYazAlanId">
-            <div class="card card-body">
-                <input id="@dinamikInputId" class="form-control" placeholder="Adınızı girin..." name="commenter" />
-                <br />
-                <textarea id="@dinamikAreaId" name="comment" style="min-height:130px" placeholder=" Yorumunuzu buraya yazınız..."></textarea>
-                <br />
-                <button onclick="sendCommentReply('@item.Id','@item.Commenter')" type="submit" class="btn btn-success col-md-1" href="/">Gönder</button>
-            </div>
-        </div>
-
-        <hr>
-        foreach (var reply in item.Replies)
-        {
-            string dinamikCevapInputId = "childReplierNameInput" + reply.Id;
-            string dinamikCevapAreaId = "childReplyContentArea" + reply.Id;
-            string dinamikCevabaCevapYazAlanId = "childCevapYaz" + reply.Id;
-            <div style="margin-left:50px">
-                <d style="font-size:25px">@reply.Commenter &nbsp</d>
-                <d style="font-size:15px"> @reply.Date.ToString("dd.MM.yyyy HH:MM")</d>
-            </div>
-            <p style="margin-left:50px">
-
-                @reply.Content
-                <br />
-                <a class="btn btn-outline-info" style="border:none" data-toggle="collapse" href="#@dinamikCevabaCevapYazAlanId" role="button" aria-expanded="false" aria-controls="@dinamikCevabaCevapYazAlanId">
-                    <i class="fas fa-reply"></i> Yanıtla
+            <p>
+                <a class="btn btn-outline-info" data-toggle="collapse" href="#yorumYaz" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    @Html.Action("YorumSayisi", "Comment") Yorumu Göster
                 </a>
             </p>
+            <div class="collapse" id="yorumYaz">
+                <br />
+                @foreach (var item in ViewBag.Comments)
+                {
+                    string dinamikInputId = "replierNameInput" + item.Id;
+                    string dinamikAreaId = "replyContentArea" + item.Id;
+                    string dinamikCevapYazAlanId = "cevapYaz" + item.Id;
+                    <p>
+                        <div>
+                            <d style="font-size:25px">@item.Commenter &nbsp</d>
 
+                            <d style="font-size:15px"> @item.Date.ToString("dd.MM.yyyy HH:MM")</d>
+                        </div>
+                        @item.Content
+                    </p>
+                    <p>
+                        <a class="btn" style="border:none;color:#17a2b8" data-toggle="collapse" href="#@dinamikCevapYazAlanId" role="button" aria-expanded="false" aria-controls="@dinamikCevapYazAlanId">
+                            <i class="fas fa-reply"></i> Yanıtla
+                        </a>
 
-            <div class="collapse" id="@dinamikCevabaCevapYazAlanId">
-                @{
-                    <div class="card card-body">
-                        <input id="@dinamikCevapInputId" class="form-control" placeholder="Adınızı girin..." name="commenter" />
-                        <br />
-                        <textarea id="@dinamikCevapAreaId" name="comment" style="min-height:130px" placeholder=" Yorumunuzu buraya yazınız..."></textarea>
-                        <br />
-                        <button onclick="sendReplyToReply('@item.Id','@reply.Id','@reply.Commenter')" type="submit" class="btn btn-success col-md-1" href="/">Gönder</button>
+                    </p>
+
+                    <div class="collapse" id="@dinamikCevapYazAlanId">
+                        <div style="height:230px" class="card card-body">
+                            <textarea id="@dinamikAreaId" name="comment" style="min-height:130px" placeholder="  Yorumunuzu girin..."></textarea>
+                            <br />
+                            <input id="@dinamikInputId" placeholder="Adınızı girin..." class="form-control" name="commenter" />
+                            <div>
+                                <button id="gonderButton" onclick="sendCommentReply('@item.Id','@item.Commenter')" type="submit" class="btn btn-success col-md-1" href="/">Gönder</button>
+                            </div>
+                        </div>
                     </div>
+
+                    <hr>
+                    foreach (var reply in item.Replies)
+                    {
+                        string dinamikCevapInputId = "childReplierNameInput" + reply.Id;
+                        string dinamikCevapAreaId = "childReplyContentArea" + reply.Id;
+                        string dinamikCevabaCevapYazAlanId = "childCevapYaz" + reply.Id;
+                        <div style="margin-left:50px">
+                            <d style="font-size:25px">@reply.Commenter &nbsp</d>
+                            <d style="font-size:15px"> @reply.Date.ToString("dd.MM.yyyy HH:MM")</d>
+                        </div>
+                        <p style="margin-left:50px">
+
+                            @reply.Content
+                            <br />
+                            <a class="btn btn-outline-info" style="border:none" data-toggle="collapse" href="#@dinamikCevabaCevapYazAlanId" role="button" aria-expanded="false" aria-controls="@dinamikCevabaCevapYazAlanId">
+                                <i class="fas fa-reply"></i> Yanıtla
+                            </a>
+                        </p>
+
+
+                        <div class="collapse" id="@dinamikCevabaCevapYazAlanId">
+                            @{
+
+                                <div style="height:230px" class="card card-body">
+                                    <textarea id="@dinamikCevapAreaId" name="comment" style="min-height:130px" placeholder="  Yorumunuzu girin..."></textarea>
+                                    <br />
+                                    <input id="@dinamikCevapInputId" placeholder="Adınızı girin..." class="form-control" name="commenter" />
+                                    <div>
+                                        <button id="gonderButton" onclick="sendReplyToReply('@item.Id','@reply.Id','@reply.Commenter')" type="submit" class="btn btn-success col-md-1" href="/">Gönder</button>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                        <hr>
+                    }
+                    <hr>
                 }
-
             </div>
-            <hr>
+
+
+        </div>
+    </div>
+
+
+
+    <script src="~/Scripts/CommentScript.js"></script>
+
+    <script>
+        function setFrefFace(title) {
+            var t = title;
+            document.getElementById("shareFB").setAttribute("href", "https://www.facebook.com/sharer.php?u=" + encodeURIComponent(location.href));
         }
-        <hr>
-    }
-</div>
+        function setFrefTwitter(title) {
+            var t = title;
+            document.getElementById("shareTw").setAttribute("href", "https://twitter.com/share?url=" + encodeURIComponent(location.href) + "&text=" + t);
+        }
+        function setFrefLinkedin(title) {
+            var t = title;
+            document.getElementById("shareLn").setAttribute("href", "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(location.href) + "&title=" + t);
+        }
+        function setFrefPinterest(image) {
+            var img = image;
+            document.getElementById("sharePn").setAttribute("href", "https://pinterest.com/pin/create/bookmarklet/?media=" + img + "&url=" + encodeURIComponent(location.href));
+        }
+        function setFrefWhatsapp(title) {
+            var t = title;
 
-<script src="~/Scripts/CommentScript.js"></script>
-
-<script>
-    function setFrefFace(title) {
-        var t = title;
-        document.getElementById("shareFB").setAttribute("href", "https://www.facebook.com/sharer.php?u=" + encodeURIComponent(location.href));
-    }
-    function setFrefTwitter(title) {
-        var t = title;
-        document.getElementById("shareTw").setAttribute("href", "https://twitter.com/share?url=" + encodeURIComponent(location.href) + "&text=" + t);
-    }
-    function setFrefLinkedin(title) {
-        var t = title;
-        document.getElementById("shareLn").setAttribute("href", "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(location.href) + "&title=" + t);
-    }
-    function setFrefPinterest(image) {
-        var img = image;
-        document.getElementById("sharePn").setAttribute("href", "https://pinterest.com/pin/create/bookmarklet/?media=" + img + "&url=" + encodeURIComponent(location.href));
-    }
-    function setFrefWhatsapp(title) {
-        var t = title;
-
-        document.getElementById("shareWs").setAttribute("href", "https://api.whatsapp.com/send?text=" + t + " " + encodeURIComponent(location.href));
-    }
-</script>
+            document.getElementById("shareWs").setAttribute("href", "https://api.whatsapp.com/send?text=" + t + " " + encodeURIComponent(location.href));
+        }
+    </script>
 

@@ -1,0 +1,37 @@
+﻿#okuButon {
+    border: none;
+    width: 70px;
+    height: 40px;
+    background: #0079c1;
+    color: #fff;
+    border-radius: 500px;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+#indirButton {
+    margin-left: 70px;
+    border: none;
+}
+
+    #indirButton:hover {
+        color: red;
+    }
+
+#okuButon:hover {
+    color: red;
+}
+
+#gonderButton {
+    margin-left: 220px;
+    margin-top: -67px;
+}
+
+.form-control {
+    width: 200px;
+    border: 1px solid #808080;
+}
+
+#yorumAlanı {
+    height: 230px;
+}
