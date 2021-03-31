@@ -177,6 +177,7 @@
     <Content Include="Content\resim2.jpg" />
     <Content Include="Content\resim3.jpeg" />
     <Content Include="Content\Comment.css" />
+    <Content Include="Content\forLayout.css" />
     <Content Include="Content\styleForShareButtons.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

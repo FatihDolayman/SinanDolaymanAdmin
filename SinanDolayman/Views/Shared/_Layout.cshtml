@@ -10,6 +10,7 @@
     <link href="~/Content/forSmallScreens.css" rel="stylesheet" />
     <link href="~/Content/Genel.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+    <link href="~/Content/forLayout.css" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -17,27 +18,7 @@
 
 </head>
 
-<style>
-    #faceFooterIcon:hover {
-        transform: scale(1.2);
-        transition: 500ms;
-    }
 
-    #twitterFooterIcon:hover {
-        transform: scale(1.2);
-        transition: 500ms;
-    }
-
-    #youtubeFooterIcon:hover {
-        transform: scale(1.2);
-        transition: 500ms;
-    }
-
-    #instagramFooterIcon:hover {
-        transform: scale(1.2);
-        transition: 500ms;
-    }
-</style>
 <body>
     <div>
 
@@ -50,17 +31,17 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark koyuRenk">
             <div class="container ">
-                <a class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a>
+                <a id="navbar1" class="navbar-brand" href="@Url.Action("Index","Home")">Anasayfa</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a></li>
-                        <li> <a class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a></li>
-                        <li><a class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a></li>
-                        <li><a class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a></li>
-                        <li><a class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a></li>
+                        <li><a id="navbar2" class="navbar-brand" href="@Url.Action("Index","Article")">Makaleler</a></li>
+                        <li><a id="navbar3" class="navbar-brand" href="@Url.Action("Index","Book")">Kitaplar</a></li>
+                        <li><a id="navbar4" class="navbar-brand" href="@Url.Action("Index","Video")">Videolar</a></li>
+                        <li><a id="navbar5" class="navbar-brand" href="@Url.Action("Index","Sound")">Sesler</a></li>
+                        <li><a id="navbar6" class="navbar-brand" href="@Url.Action("Index","Interview")">Röportajlar</a></li>
                     </ul>
 
                     <form class="form-inline">
@@ -129,12 +110,12 @@
                 <div style="color:white;margin-bottom:20px" class="col-md-9">
                     <br />
                     <h5>Sayfalar</h5>
-                    <a style="color:white" href="@Url.Action("Index","Home")">Anasayfa</a> <br />
-                    <a style="color:white" href="@Url.Action("Index","Article")">Makaleler</a> <br />
-                    <a style="color:white" href="@Url.Action("Index","Book")">Kitaplar</a><br />
-                    <a style="color:white" href="@Url.Action("Index","Video")">Videolar</a> <br />
-                    <a style="color:white" href="@Url.Action("Index","Sound")">Sesler</a> <br />
-                    <a style="color:white" href="@Url.Action("Index","Interview")">Röportajlar</a>
+                    <a id="yazi1" href="@Url.Action("Index","Home")">Anasayfa</a> <br />
+                    <a id="yazi2" href="@Url.Action("Index","Article")">Makaleler</a> <br />
+                    <a id="yazi3" href="@Url.Action("Index","Book")">Kitaplar</a><br />
+                    <a id="yazi4" href="@Url.Action("Index","Video")">Videolar</a> <br />
+                    <a id="yazi5" href="@Url.Action("Index","Sound")">Sesler</a> <br />
+                    <a id="yazi6" href="@Url.Action("Index","Interview")">Röportajlar</a>
                 </div>
 
 
