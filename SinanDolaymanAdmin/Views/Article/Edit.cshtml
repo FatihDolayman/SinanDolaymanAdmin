@@ -44,7 +44,7 @@
                                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.CoverImage, htmlAttributes: new { @class = "col-form-label" })
+                                @Html.LabelFor(model => model.CoverImage, "Resim urlini buraya yapıştırınız", htmlAttributes: new { @class = "col-form-label" })
                                 @Html.EditorFor(model => model.CoverImage, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.CoverImage, "", new { @class = "text-danger" })
                             </div>
@@ -53,6 +53,13 @@
                                 <label for="articleImage"> Bir resim yükleyin</label>
                                 <input name="image" type="file" class="form-control-file" id="articleImage">
                             </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "col-form-label" })
+                                @Html.TextAreaFor(model => model.Summary, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                            </div>
+                           
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Content)
                                 @Html.TextAreaFor(model => model.Content, new { @class = "ckeditor" })
@@ -65,9 +72,8 @@
                             </div>
                             <input type="submit" value="Düzenle" class="btn btn-facebook" />
                         }
-
                         <div>
-                            <br />
+                            <br>
                             @Html.ActionLink("Listeye Dön", "Index")
                         </div>
                     </div>
@@ -84,3 +90,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

@@ -28,20 +28,18 @@
         @Html.DisplayFor(model => model.Title)
     </h1>
 
-    <p>
+    <p style="font-size:small">
 
         <br />
-        @Html.DisplayFor(model => model.CreateDate)
+    <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.CreateDate)</small></p>
     </p>
     <div style="max-width:700px" class="card">
         <img id="detayresim" style="max-width:700px" src="@Model.CoverImage" class="card-img-bottom" alt="...">
     </div>
-    @*<img width="500" class="pinterest-img"
-        src="@Model.CoverImage"
-        alt="" />*@
+   
 
     <br />
-    <audio style="height:150px;width:600px; background-color:aquamarine" controls="controls">
+    <audio style="width:600px; background:none" controls="controls">
         <source src="@Model.Path" type="audio/mp3" />
     </audio>
 </div>

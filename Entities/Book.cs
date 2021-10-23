@@ -29,6 +29,9 @@ namespace Entities
         [Display(Name = "Kapak Resmi")]
         public string CoverImage { get; set; }
 
+        [Display(Name = "Kapak Resmi")]
+        public string DetailImage { get; set; }
+
         [Display(Name = "İçerik")]
         [AllowHtml]
         public string Content { get; set; }
@@ -36,6 +39,7 @@ namespace Entities
 
         [Display(Name = "PDF")]
         public string Path { get; set; }
+        public string CloudinaryPublicId { get; set; }
 
 
 
@@ -46,7 +50,7 @@ namespace Entities
 
         [Display(Name = "Son Düzenlenme Tarihi")]
         [DataType(DataType.Date)]
-        public DateTime ModifyDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
 
 
     }

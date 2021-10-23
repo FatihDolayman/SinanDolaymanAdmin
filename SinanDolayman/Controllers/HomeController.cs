@@ -16,21 +16,56 @@ namespace SinanDolayman.Controllers
 
         public ActionResult Index(string searchTerm)
         {
-            if (searchTerm==null)
+            if (searchTerm == null)
             {
                 searchTerm = "";
             }
-            SearchModel aramaListeleri = new SearchModel();            
-            aramaListeleri.Articles = db.Articles.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-            aramaListeleri.Books = db.Books.AsNoTracking().Where(a => a.Name.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-            aramaListeleri.Sounds = db.Sounds.AsNoTracking().Where(a => a.Title.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-            aramaListeleri.Interviews = db.Interviews.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
-            aramaListeleri.Videos = db.Videos.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).ToList();
+            SearchModel aramaListeleri = new SearchModel();
+            aramaListeleri.ortakModel = new List<CommonModelForIndex>();
+            List<CommonModelForIndex> sampleList = new List<CommonModelForIndex>();
+            var articles = db.Articles.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).Take(10)
+                              .Select(a => new CommonModelForIndex
+                              {
+                                  Id = a.Id,
+                                  TitleOrName = a.Title,
+                                  Summary = a.Summary,
+                                  DetailImage = a.CoverImage,
+                                  CoverImage = a.CoverImage,
+                                  CreateDate = a.CreateDate,
+                                  Module = Module.Article
+                              }).ToList();
+            var books = db.Books.AsNoTracking().Where(a => a.Name.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).Take(10)
+                            .Select(a => new CommonModelForIndex
+                            {
+                                Id = a.Id,
+                                TitleOrName = a.Name,
+                                Summary = a.Summary,
+                                CoverImage = a.CoverImage,
+                                DetailImage = a.DetailImage,
+                                CreateDate = a.CreateDate,
+                                Module = Module.Book
+                            }).ToList();
+            var videos = db.Videos.AsNoTracking().Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate).Take(10)
+                            .Select(a => new CommonModelForIndex
+                            {
+                                Id = a.Id,
+                                TitleOrName = a.Title,
+                                Summary = a.Summary,
+                                DetailImage = a.CoverImage,
+                                CoverImage = a.CoverImage,
+                                CreateDate = a.CreateDate,
+                                Module=Module.Video
+                            }).ToList();
+            sampleList.AddRange(articles);
+            sampleList.AddRange(books);
+            sampleList.AddRange(videos);
+            sampleList=sampleList.OrderByDescending(a => a.CreateDate).Take(10).ToList();
+            aramaListeleri.ortakModel = sampleList;
+
             ViewBag.SearchTerm = searchTerm;
             return View(aramaListeleri);
-
         }
-              
+
 
         public ActionResult About()
         {

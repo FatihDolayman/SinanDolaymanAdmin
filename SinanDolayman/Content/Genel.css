@@ -18,12 +18,12 @@
 
 #boxContainer {
     margin: auto;
-    margin-left: 25%;
+    /*margin-left: 25%;*/
     position: relative;
-    width: 410px !important;
-    height: 42px;
+/*    width: 410px !important;
+*/    height: 42px;
     background:#fff;
-    //border: 3px solid #000000;
+   /*border: 3px solid #000000;*/
     padding: 0px 10px;
     border-radius: 50px;
 }

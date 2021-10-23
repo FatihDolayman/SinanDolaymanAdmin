@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using DAL;
 using Entities;
 using System;
 using System.Data.Entity;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using static SinanDolaymanAdmin.Helper.CloudinaryHelper;
 
 namespace SinanDolaymanAdmin.Controllers
 {
@@ -29,7 +32,7 @@ namespace SinanDolaymanAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Video video = db.Videos.Find(id);
+            var video = db.Videos.Find(id);
             if (video == null)
             {
                 return HttpNotFound();
@@ -43,40 +46,62 @@ namespace SinanDolaymanAdmin.Controllers
             ViewBag.CategoryId = new SelectList(db.VideoCategories, "Id", "Name");
             return View();
         }
+        public static Cloudinary cloudinary;
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary,VideoPath")] Video video, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,CoverImage,Summary,VideoPath")] Entities.Video video, HttpPostedFileBase image)
         {
-            if (ModelState.IsValid)
+            if (video.CoverImage==null && (image == null || image.ContentLength == 0))
             {
-                string extension = String.Empty;
-                string fileName = String.Empty;
-                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
-                {
-                    extension = Path.GetExtension(image.FileName);
-
-                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
-                    {
-
-                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
-                        return View(video);
-                    }
-
-                    fileName = Guid.NewGuid() + ".png";
-                    image.SaveAs(Path.Combine(Server.MapPath("/SiteResimleri/"), fileName));
-
-                    video.CoverImage = "/SiteResimleri/" + fileName;
-                }
-
-                video.CreateDate = DateTime.Now;
-                video.ModifyDate = DateTime.Now;
-                db.Videos.Add(video);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.CategoryId = new SelectList(db.VideoCategories, "Id", "Name");
+                ViewBag.FileError = "Lütfen bir resim dosyası yükleyiniz";
+                return View(video);
             }
-            return View(video);
+
+            if (image != null && image.ContentLength > 5 * 1024 * 1024)
+            {
+                ViewBag.CategoryId = new SelectList(db.VideoCategories, "Id", "Name");
+
+                ViewBag.FileError = "Resim dosya boyutu 5 MB'dan büyük olamaz";
+                return View(video);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.CategoryId = new SelectList(db.VideoCategories, "Id", "Name");
+                return View(video);
+            }
+            if (image!=null )
+            {
+                Cloudinary cloudinary;
+                Account account = new Account(CLOUD_NAME, API_KEY, API_SECRET);
+                cloudinary = new Cloudinary(account);
+
+                var UploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(image.FileName, image.InputStream)
+                };
+                var uploadResult = cloudinary.Upload(UploadParams, "raw");
+                if (uploadResult != null)
+                {
+                    video.CoverImage = uploadResult.Url.ToString();
+                }
+                else
+                {
+                    ViewBag.CategoryId = new SelectList(db.VideoCategories, "Id", "Name");
+
+                    ViewBag.FileError = "Resim yükleme başarısız";
+                    return View(video);
+                }
+            }
+            video.CreateDate = DateTime.Now;
+           
+            db.Videos.Add(video);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
         // GET: Video/Edit/5
@@ -86,7 +111,7 @@ namespace SinanDolaymanAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Video video = db.Videos.Find(id);
+            var video = db.Videos.Find(id);
             if (video == null)
             {
                 return HttpNotFound();
@@ -98,11 +123,11 @@ namespace SinanDolaymanAdmin.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,VideoPath,Summary,CategoryId")] Video video)
+        public ActionResult Edit([Bind(Include = "Id,Title,VideoPath,Summary,CategoryId")] Entities.Video video, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                Video dbVideo = new Video();
+                var dbVideo = new Entities.Video();
                 dbVideo = db.Videos.Find(video.Id);
 
                 dbVideo.Title = video.Title;
@@ -124,7 +149,7 @@ namespace SinanDolaymanAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Video video = db.Videos.Find(id);
+            var video = db.Videos.Find(id);
             if (video == null)
             {
                 return HttpNotFound();
@@ -137,7 +162,7 @@ namespace SinanDolaymanAdmin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Video video = db.Videos.Find(id);
+            var video = db.Videos.Find(id);
             db.Videos.Remove(video);
             db.SaveChanges();
             return RedirectToAction("Index");

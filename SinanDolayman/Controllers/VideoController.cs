@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Entities;
+using PagedList;
 using SinanDolayman.Models;
 
 
@@ -17,9 +18,12 @@ namespace SinanDolayman.Controllers
     {
         private DolaymanDbContext db = new DolaymanDbContext();
 
+      
+
         // GET: Video
-        public ActionResult Index(string searchTerm)
+        public ActionResult Index(string searchTerm, int? page)
         {
+            int pageNumber = page ?? 1;
             if (!String.IsNullOrEmpty(searchTerm))
             {
                 var videos = db.Videos.Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate)
@@ -31,7 +35,7 @@ namespace SinanDolayman.Controllers
                                         CreateDate = a.CreateDate,
                                         CoverImage = a.CoverImage
                                     }).ToList();
-                return View(videos);
+                return View(videos.ToPagedList(pageNumber, 10));
             }
             else
             {
@@ -44,7 +48,7 @@ namespace SinanDolayman.Controllers
                                                        CreateDate = a.CreateDate,
                                                        CoverImage = a.CoverImage
                                                    }).ToList();
-                return View(videos);
+                return View(videos.ToPagedList(pageNumber, 10));
             }
         }
 
@@ -60,6 +64,7 @@ namespace SinanDolayman.Controllers
             {
                 return HttpNotFound();
             }
+            var model = new VideoDetailsModel();
             var commentsWithReplies = db.Comments.AsNoTracking().Where(a => a.Module == Module.Video && a.ModuleId == id && a.IsOk == true).Select(a => new CommentWithRepliesViewModel
             {
                 Id = a.Id,
@@ -71,13 +76,16 @@ namespace SinanDolayman.Controllers
 
             }).OrderByDescending(a => a.Date).ToList();
             var replies = db.CommentReplies.AsNoTracking().Where(a => a.IsOk == true).OrderBy(a => a.Date).ToList();
+            var repliesCount = 0;
             foreach (var item in commentsWithReplies)
             {
                 item.Replies = replies.Where(a => a.CommentId == item.Id).ToList();
+                repliesCount = repliesCount + item.Replies.Count();
             }
 
-            ViewBag.Comments = commentsWithReplies;
-            return View(video);
+            model.Comments = commentsWithReplies;
+            model.Video = video;
+            return View(model);
         }
                
         protected override void Dispose(bool disposing)
@@ -88,5 +96,7 @@ namespace SinanDolayman.Controllers
             }
             base.Dispose(disposing);
         }
+
+       
     }
 }

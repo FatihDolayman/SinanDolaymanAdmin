@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Entities;
+using PagedList;
 using SinanDolayman.Models;
 
 namespace SinanDolayman.Controllers
@@ -17,8 +18,9 @@ namespace SinanDolayman.Controllers
         private DolaymanDbContext db = new DolaymanDbContext();
 
         // GET: Book
-        public ActionResult Index(string searchTerm)
+        public ActionResult Index(string searchTerm, int? page)
         {
+            int pageNumber = page ?? 1;
             if (!String.IsNullOrEmpty(searchTerm))
             {
                 var books = db.Books.Where(a => a.Name.Contains(searchTerm) || a.Content.Contains(searchTerm)).OrderByDescending(a => a.CreateDate)
@@ -30,7 +32,7 @@ namespace SinanDolayman.Controllers
                                         CreateDate = a.CreateDate,
                                         CoverImage = a.CoverImage
                                     }).ToList();
-                return View(books);
+                return View(books.ToPagedList(pageNumber, 10));
             }
             else
             {
@@ -43,7 +45,7 @@ namespace SinanDolayman.Controllers
                                                        CreateDate = a.CreateDate,
                                                        CoverImage = a.CoverImage
                                                    }).ToList();
-                return View(books);
+                return View(books.ToPagedList(pageNumber, 10));
             }
         }
        
@@ -60,6 +62,8 @@ namespace SinanDolayman.Controllers
             {
                 return HttpNotFound();
             }
+            var model = new BookDetailsModel();
+            model.Book = book;
             var commentsWithReplies = db.Comments.AsNoTracking().Where(a => a.Module == Module.Book && a.ModuleId == id && a.IsOk == true).Select(a => new CommentWithRepliesViewModel
             {
                 Id = a.Id,
@@ -71,15 +75,21 @@ namespace SinanDolayman.Controllers
 
             }).OrderByDescending(a => a.Date).ToList();
             var replies = db.CommentReplies.AsNoTracking().Where(a => a.IsOk == true).OrderBy(a => a.Date).ToList();
+            var repliesCount = 0;
             foreach (var item in commentsWithReplies)
             {
                 item.Replies = replies.Where(a => a.CommentId == item.Id).ToList();
+                repliesCount = repliesCount + item.Replies.Count();
             }
-
-            ViewBag.Comments = commentsWithReplies;
-            return View(book);
+            model.Comments = commentsWithReplies;
+            model.Book = book;
+            return View(model);
         }
 
+        public ActionResult Viewer()
+        {
+            return View();
+        }
 
         protected override void Dispose(bool disposing)
         {

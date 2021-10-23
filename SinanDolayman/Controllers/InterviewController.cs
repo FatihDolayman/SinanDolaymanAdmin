@@ -13,6 +13,7 @@ using SinanDolayman.Models;
 
 namespace SinanDolayman.Controllers
 {
+    [Authorize()]
     public class InterviewController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();

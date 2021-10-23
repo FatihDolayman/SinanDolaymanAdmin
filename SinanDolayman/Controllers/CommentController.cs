@@ -45,9 +45,14 @@ namespace SinanDolayman.Controllers
             return PartialView(yorumSayisi + yanitSayisi);
         }
 
-        [HttpPost]
+        [HttpPost]     
         public JsonResult SendComment(int moduleId, string module, string commenterName, string commentContent)
         {
+            bool success = false;
+            if (commentContent.Length<3)
+            {
+                return Json(success, JsonRequestBehavior.AllowGet);
+            }
             Comment comment = new Comment();
 
             comment.ModuleId = moduleId;
@@ -57,12 +62,18 @@ namespace SinanDolayman.Controllers
             comment.Date = DateTime.Now;
             db.Comments.Add(comment);
             db.SaveChanges();
-            return Json(JsonRequestBehavior.AllowGet);
+            success = true;
+            return Json(success,JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult SendCommentReply(int commentId, string commenterName, string commentContent)
         {
+            bool success = false;
+            if (commentContent.Length < 3)
+            {
+                return Json(success, JsonRequestBehavior.AllowGet);
+            }
             CommentReply reply = new CommentReply();
           
             reply.Commenter = commenterName;
@@ -71,7 +82,8 @@ namespace SinanDolayman.Controllers
             reply.Date = DateTime.Now;
             db.CommentReplies.Add(reply);
             db.SaveChanges();
-            return Json(JsonRequestBehavior.AllowGet);
+            success = true;
+            return Json(success,JsonRequestBehavior.AllowGet);
         }
 
         // GET: Comment/Edit/5

@@ -8,18 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Entities;
+using PagedList;
 using SinanDolayman.Models;
 
 
 namespace SinanDolayman.Controllers
 {
+    [Authorize()]
     public class SoundController : Controller
     {
         private DolaymanDbContext db = new DolaymanDbContext();
 
         // GET: Sound
-        public ActionResult Index(string searchTerm)
+        public ActionResult Index(string searchTerm, int? page)
         {
+            int pageNumber = page ?? 1;
             if (!String.IsNullOrEmpty(searchTerm))
             {
                 var sounds = db.Sounds.Where(a => a.Title.Contains(searchTerm) || a.Summary.Contains(searchTerm)).OrderByDescending(a => a.CreateDate)
@@ -31,7 +34,7 @@ namespace SinanDolayman.Controllers
                                         CreateDate = a.CreateDate,
                                         CoverImage = a.CoverImage
                                     }).ToList();
-                return View(sounds);
+                return View(sounds.ToPagedList(pageNumber, 10));
             }
             else
             {
@@ -44,7 +47,7 @@ namespace SinanDolayman.Controllers
                                                        CreateDate = a.CreateDate,
                                                        CoverImage = a.CoverImage
                                                    }).ToList();
-                return View(sounds);
+                return View(sounds.ToPagedList(pageNumber, 10));
             }
         }
 

@@ -6,21 +6,21 @@
     }  
 }
 
-
+/*
 @media (max-width: 780px) {
     #carouselExampleCaptions {
        height:300px;
     }
 }
 
-
+*/
 
 
 @media (max-width: 550px) {
     #sosyalMedyalar {
         background-color: transparent !important;
-        margin-left: 224px;
-        margin-top: -205px !important;
+/*        margin-left: 224px;
+*/        margin-top: -205px !important;
         height: 100px;
     }    
 
@@ -31,8 +31,8 @@
 
    #gonderButton {
         margin-left: 224px;
-        width:100px;
-   }
+/*        width:100px;
+*/   }
     
     
 }

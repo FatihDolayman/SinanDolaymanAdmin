@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL</RootNamespace>
     <AssemblyName>DAL</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,65 +59,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DolaymanDbContext.cs" />
-    <Compile Include="Migrations\202008242012079_ilkMigrate.cs" />
-    <Compile Include="Migrations\202008242012079_ilkMigrate.Designer.cs">
-      <DependentUpon>202008242012079_ilkMigrate.cs</DependentUpon>
+    <Compile Include="Migrations\202107161313103_modif.cs" />
+    <Compile Include="Migrations\202107161313103_modif.designer.cs">
+      <DependentUpon>202107161313103_modif.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009061835246_SesYol.cs" />
-    <Compile Include="Migrations\202009061835246_SesYol.designer.cs">
-      <DependentUpon>202009061835246_SesYol.cs</DependentUpon>
+    <Compile Include="Migrations\202107242031510_bookd.cs" />
+    <Compile Include="Migrations\202107242031510_bookd.designer.cs">
+      <DependentUpon>202107242031510_bookd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010041823108_yazar.cs" />
-    <Compile Include="Migrations\202010041823108_yazar.designer.cs">
-      <DependentUpon>202010041823108_yazar.cs</DependentUpon>
+    <Compile Include="Migrations\202108181859552_modifydate.cs" />
+    <Compile Include="Migrations\202108181859552_modifydate.designer.cs">
+      <DependentUpon>202108181859552_modifydate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010151937367_comment.cs" />
-    <Compile Include="Migrations\202010151937367_comment.designer.cs">
-      <DependentUpon>202010151937367_comment.cs</DependentUpon>
+    <Compile Include="Migrations\202109072058454_cloudinaryPublicId.cs" />
+    <Compile Include="Migrations\202109072058454_cloudinaryPublicId.designer.cs">
+      <DependentUpon>202109072058454_cloudinaryPublicId.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010151947003_commentfixed.cs" />
-    <Compile Include="Migrations\202010151947003_commentfixed.designer.cs">
-      <DependentUpon>202010151947003_commentfixed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011291927032_kapakResimleri.cs" />
-    <Compile Include="Migrations\202011291927032_kapakResimleri.designer.cs">
-      <DependentUpon>202011291927032_kapakResimleri.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011292020024_ozet.cs" />
-    <Compile Include="Migrations\202011292020024_ozet.designer.cs">
-      <DependentUpon>202011292020024_ozet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012041655586_entitiler.cs" />
-    <Compile Include="Migrations\202012041655586_entitiler.designer.cs">
-      <DependentUpon>202012041655586_entitiler.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101051915479_coverImage.cs" />
-    <Compile Include="Migrations\202101051915479_coverImage.designer.cs">
-      <DependentUpon>202101051915479_coverImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101311831516_nullableKategori.cs" />
-    <Compile Include="Migrations\202101311831516_nullableKategori.designer.cs">
-      <DependentUpon>202101311831516_nullableKategori.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101311838184_nullables.cs" />
-    <Compile Include="Migrations\202101311838184_nullables.designer.cs">
-      <DependentUpon>202101311838184_nullables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101311846410_kategorinull.cs" />
-    <Compile Include="Migrations\202101311846410_kategorinull.designer.cs">
-      <DependentUpon>202101311846410_kategorinull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102021501076_seslendirme.cs" />
-    <Compile Include="Migrations\202102021501076_seslendirme.designer.cs">
-      <DependentUpon>202102021501076_seslendirme.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102022047446_soundPath.cs" />
-    <Compile Include="Migrations\202102022047446_soundPath.designer.cs">
-      <DependentUpon>202102022047446_soundPath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102031356409_commentReply.cs" />
-    <Compile Include="Migrations\202102031356409_commentReply.designer.cs">
-      <DependentUpon>202102031356409_commentReply.cs</DependentUpon>
+    <Compile Include="Migrations\202109191800177_detailimagebook.cs" />
+    <Compile Include="Migrations\202109191800177_detailimagebook.designer.cs">
+      <DependentUpon>202109191800177_detailimagebook.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,50 +93,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008242012079_ilkMigrate.resx">
-      <DependentUpon>202008242012079_ilkMigrate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107161313103_modif.resx">
+      <DependentUpon>202107161313103_modif.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009061835246_SesYol.resx">
-      <DependentUpon>202009061835246_SesYol.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107242031510_bookd.resx">
+      <DependentUpon>202107242031510_bookd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010041823108_yazar.resx">
-      <DependentUpon>202010041823108_yazar.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108181859552_modifydate.resx">
+      <DependentUpon>202108181859552_modifydate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010151937367_comment.resx">
-      <DependentUpon>202010151937367_comment.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202109072058454_cloudinaryPublicId.resx">
+      <DependentUpon>202109072058454_cloudinaryPublicId.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010151947003_commentfixed.resx">
-      <DependentUpon>202010151947003_commentfixed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011291927032_kapakResimleri.resx">
-      <DependentUpon>202011291927032_kapakResimleri.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011292020024_ozet.resx">
-      <DependentUpon>202011292020024_ozet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012041655586_entitiler.resx">
-      <DependentUpon>202012041655586_entitiler.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101051915479_coverImage.resx">
-      <DependentUpon>202101051915479_coverImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101311831516_nullableKategori.resx">
-      <DependentUpon>202101311831516_nullableKategori.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101311838184_nullables.resx">
-      <DependentUpon>202101311838184_nullables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101311846410_kategorinull.resx">
-      <DependentUpon>202101311846410_kategorinull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102021501076_seslendirme.resx">
-      <DependentUpon>202102021501076_seslendirme.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102022047446_soundPath.resx">
-      <DependentUpon>202102022047446_soundPath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102031356409_commentReply.resx">
-      <DependentUpon>202102031356409_commentReply.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202109191800177_detailimagebook.resx">
+      <DependentUpon>202109191800177_detailimagebook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

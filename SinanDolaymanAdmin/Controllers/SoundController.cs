@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using DAL;
 using Entities;
 using System;
 using System.Data.Entity;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using static SinanDolaymanAdmin.Helper.CloudinaryHelper;
 
 namespace SinanDolaymanAdmin.Controllers
 {
@@ -43,52 +46,77 @@ namespace SinanDolaymanAdmin.Controllers
             ViewBag.CategoryId = new SelectList(db.SoundCategories, "Id", "Name");
             return View();
         }
+        public static Cloudinary cloudinary;
 
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Summary,CoverImage,Path,CategoryId")] Sound sound, HttpPostedFileBase image, HttpPostedFileBase soundFile)
         {
-               if (ModelState.IsValid)
+            if (image == null || image.ContentLength == 0)
             {
-                string extension = String.Empty;
-                string fileName = String.Empty;
-                if (image != null && image.ContentLength > 0 && image.ContentLength < 2 * 1024 * 1024)
-                {
-                    extension = Path.GetExtension(image.FileName);
+                ViewBag.FileError = "Lütfen bir resim dosyası yükleyiniz";
+                return View(sound);
+            }
 
-                    if (extension.Contains("pdf") || extension.Contains("doc") || extension.Contains("docx"))
-                    {
+            if (image.ContentLength > 5 * 1024 * 1024)
+            {
+                ViewBag.FileError = "Resim dosya boyutu 5 MB'dan büyük olamaz";
+                return View(sound);
+            }
 
-                        ViewBag.Mesaj = "Desteklenmeyen dosya türü";
-                        ViewBag.CategoryId = new SelectList(db.SoundCategories, "Id", "Name");
-                        return View(sound);
-                    }
+            if (!ModelState.IsValid)
+            {
+                return View(sound);
+            }
+            Cloudinary cloudinary;
+            Account account = new Account(CLOUD_NAME, API_KEY, API_SECRET);
+            cloudinary = new Cloudinary(account);
 
-                    fileName = Guid.NewGuid() + ".png";
-                    image.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SoundResimleri", fileName));
-
-                    sound.CoverImage = "/SoundResimleri/" + fileName;
-                }
-
-                string extension2 = String.Empty;
-                string fileName2 = String.Empty;
-                if (soundFile != null && soundFile.ContentLength > 0)
-                {
-                    extension2 = Path.GetExtension(soundFile.FileName);
-                    fileName2 = Guid.NewGuid() + ".mp3";
-                    soundFile.SaveAs(Path.Combine("C:\\Users\\Fatih\\source\\repos\\SinanDolaymanAdmin\\SinanDolayman\\SesDosyalari", fileName2));
-
-                    sound.Path = "/SesDosyalari/" + fileName2;
-                }
-
+            var UploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(image.FileName, image.InputStream)
+            };
+            var uploadResult = cloudinary.Upload(UploadParams, "raw");
+            if (uploadResult != null)
+            {
                 sound.CreateDate = DateTime.Now;
+                sound.CoverImage = uploadResult.Url.ToString();              
+            }
+            else
+            {
+                ViewBag.FileError = "Resim yükleme başarısız";
+                return View(sound);
+            }
+
+
+            if (soundFile == null || soundFile.ContentLength == 0)
+            {
+                ViewBag.FileError = "Lütfen bir ses dosyası yükleyiniz";
+                return View(sound);
+            }
+
+            if (soundFile.ContentLength > 5 * 1024 * 1024)
+            {
+                ViewBag.FileError = "Ses dosya boyutu 5 MB'dan büyük olamaz";
+                return View(sound);
+            }
+
+
+            UploadParams.File = new FileDescription(soundFile.FileName, soundFile.InputStream);
+            uploadResult = cloudinary.Upload(UploadParams, "raw");
+            if (uploadResult != null)
+            {
+                sound.Path = uploadResult.Url.ToString();
                 db.Sounds.Add(sound);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }          
-
-            return View(sound);
+            }
+            else
+            {
+                ViewBag.FileError = "Ses yükleme başarısız";
+                return View(sound);
+            }
         }
 
         // GET: Sound/Edit/5

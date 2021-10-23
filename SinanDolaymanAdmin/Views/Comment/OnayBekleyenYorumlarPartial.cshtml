@@ -1,47 +1,50 @@
 ﻿@model List<Entities.Comment>
-<table>
-    <tr>
-        <th>    </th>
-        <th>    </th>
-        <th>    </th>
-        <th class="pull-right">    </th>
+<div style="margin-left:200px">
+    <table>
+        <tr>
+            <th>    </th>
+            <th>    </th>
+            <th>    </th>
+            <th class="pull-right">    </th>
 
-    </tr>
-    @{int sayi = 0;}
-    @foreach (var comment in Model)
-    {
-        sayi++;
-        <tr style="height:20px">
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
         </tr>
-        <tr style="border-bottom:solid 1px;">
-            <td>
-                @sayi
-            </td>
-            <td>
+        @{int sayi = 0;}
+        @foreach (var comment in Model)
+        {
+            sayi++;
+            <tr style="height:20px">
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr style="border-bottom:solid 1px;">
+                <td>
+                    @sayi
+                </td>
+                <td>
 
-                <button onclick="onayla('@comment.Id')" class="btn btn-success">Onayla</button>
-            </td>
-            <td>
-                @comment.Content
-            </td>
-            <td class="pull-right">
-                <button onclick="sil('@comment.Id')" class="btn btn-danger">Sil</button>
-            </td>
-        </tr>
+                    <button onclick="onayla('@comment.Id')" class="btn btn-success">Onayla</button>
+                </td>
+                <td>
+                    @comment.Content
+                </td>
+                <td class="pull-right">
+                    <button onclick="sil('@comment.Id')" class="btn btn-danger">Sil</button>
+                </td>
+            </tr>
 
-        <tr style="height:20px">
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-    }
-</table>
+            <tr style="height:20px">
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

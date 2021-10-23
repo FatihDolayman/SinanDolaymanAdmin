@@ -34,7 +34,7 @@ namespace Entities
 
         [Display(Name = "Son Dünzenlenme Tarihi")]
         [DataType(DataType.Date)]
-        public DateTime ModifyDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
 
 
         [Display(Name = "Kategori Id")]

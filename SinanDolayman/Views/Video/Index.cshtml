@@ -1,39 +1,27 @@
-﻿@model IEnumerable<SinanDolayman.Models.VideoIndexViewModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<SinanDolayman.Models.VideoIndexViewModel>
+@using SinanDolayman.Helpers;
 <br />
 @{
     ViewBag.Title = "Videolar";
 }
 
-
-
-@{
-    foreach (var item in Model)
-    {
-        <div class="carousel-item">
-            <img src="@item.CoverImage" class="d-block w-100" height="500" alt="...">
-
-            <div class="carousel-caption d-none d-md-block">
-                <h5>@item.Title</h5>
-                <p>@Html.Raw(item.Summary)</p>
-            </div>
-        </div>
-    }
-}
-
-
 @foreach (var video in Model)
 {
-    <div style="border:none; height:210px" class="card mb-3">
+    <div style="border:none; " class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <a href="@Url.Action("Details","Video",new {id=video.Id })">
+                <a href="@Url.Action("Details","Video",new {id=video.GenerateSlug() })">
                     <img src="@video.CoverImage" class="card-img" height="210" width="240" alt="...">
                 </a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <a href="@Url.Action("Details","Video",new {id=video.Id })"><h5 style="color:black" class="card-title">@video.Title</h5></a>
-                    <p class="card-text">@video.Summary</p>
+                    <a href="@Url.Action("Details","Video",new {id=video.GenerateSlug() })">
+                        <h5 style="color:black" class="card-title">@video.Title</h5>
+                    </a>
+                    <p class="card-text">@video.Summary.SubNullable(0, 120)...</p>
                     <a type="submit" id="detayButonu" class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Details","Video", new {id=video.GenerateSlug()})"> Devamı...</a>
 
                 </div>
@@ -43,3 +31,4 @@
 
 }
 
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { searchTerm = ViewBag.Search, page }))
