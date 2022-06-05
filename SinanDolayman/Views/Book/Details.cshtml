@@ -12,7 +12,8 @@
     
      @@media screen and (max-width:719px){               
                #pdfOku{
-                   width:450px;
+                   width:345px;
+                   text-align: center;
                }
          }
 </style>
@@ -69,20 +70,25 @@
                 <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.Book.CreateDate)</small></p>
             </div>
         </div>
+        @{
+            if (!string.IsNullOrEmpty(Model.Book.Path))
+            {
+                <div>
+                    <br />
+                    @{string fileName = Model.Book.CloudinaryPublicId;}
+                    <div style="max-width:740px">
 
-        <div >
-            <br />
-            @{string fileName = Model.Book.CloudinaryPublicId ;}
-            <div style="max-width:740px">
-               
-                <iframe id="pdfOku" src="/viewer/web/viewer.html?file=/viewer/@fileName"
-                        width="700px"
-                        height="800px"
-                        style="border: none;">
-                </iframe>
-            </div>
+                        <iframe id="pdfOku" src="/viewer/web/viewer.html?file=/viewer/@fileName"
+                                width="700px"
+                                height="800px"
+                                style="border: none;">
+                        </iframe>
+                    </div>
 
-        </div>
+                </div>
+
+            }
+        }
 
     </div>
 </div>

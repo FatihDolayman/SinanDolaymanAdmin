@@ -59,25 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DolaymanDbContext.cs" />
-    <Compile Include="Migrations\202107161313103_modif.cs" />
-    <Compile Include="Migrations\202107161313103_modif.designer.cs">
-      <DependentUpon>202107161313103_modif.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107242031510_bookd.cs" />
-    <Compile Include="Migrations\202107242031510_bookd.designer.cs">
-      <DependentUpon>202107242031510_bookd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108181859552_modifydate.cs" />
-    <Compile Include="Migrations\202108181859552_modifydate.designer.cs">
-      <DependentUpon>202108181859552_modifydate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109072058454_cloudinaryPublicId.cs" />
-    <Compile Include="Migrations\202109072058454_cloudinaryPublicId.designer.cs">
-      <DependentUpon>202109072058454_cloudinaryPublicId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109191800177_detailimagebook.cs" />
-    <Compile Include="Migrations\202109191800177_detailimagebook.designer.cs">
-      <DependentUpon>202109191800177_detailimagebook.cs</DependentUpon>
+    <Compile Include="Migrations\202203151904244_init.cs" />
+    <Compile Include="Migrations\202203151904244_init.designer.cs">
+      <DependentUpon>202203151904244_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,20 +77,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107161313103_modif.resx">
-      <DependentUpon>202107161313103_modif.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107242031510_bookd.resx">
-      <DependentUpon>202107242031510_bookd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108181859552_modifydate.resx">
-      <DependentUpon>202108181859552_modifydate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109072058454_cloudinaryPublicId.resx">
-      <DependentUpon>202109072058454_cloudinaryPublicId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109191800177_detailimagebook.resx">
-      <DependentUpon>202109191800177_detailimagebook.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202203151904244_init.resx">
+      <DependentUpon>202203151904244_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
