@@ -106,7 +106,7 @@
                 <div class="row no-gutters">
                     <div class="col-md-4" style="background-color: #f8f9ff">
                         <section class="base cover">
-                            <a href="@Url.Action("Details",item.Module.ToString(),new {id=item.Id })">
+                            <a href="@Url.Action("Details",item.Module.ToString(),new {id=item.GenerateSlug()})">
                                 <img style="max-height: 220px; " src="@item.CoverImage" class="card-img" alt="...">
                             </a>
                         </section>
